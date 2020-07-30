@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <base href="http://www.dartmouth.edu/~novosad/">
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web'
+	  rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" media="all"
+	  href="styles.css"
+	  />
+    <title>Paul Novosad</title>
+  </head>
+
+  <body>
+
+    <div id="pn-title">
+      <p><a id="pn-title" href="index.html">Paul Novosad</a></p>
+    </div>
+    <div id="img-menu">
+      <div id="pn-masthead">
+
+	<img src="maseru.jpg"
+	     width="1040" alt="urban" />
+      </div> <!-- #masthead -->
+
+      <div id="access" role="navigation">
+	<div class="menu-header">
+	  <ul id="menu-main-menu"
+	      class="menu">
+
+	    <li class="menu-item">
+	      <a href="index.html">Research</a></li>
+
+	    <li class="menu-item">
+	      <a href="paul-novosad-cv.pdf">CV</a></li>
+
+	    <li class="menu-item">
+	      <a href="jobs.html">Jobs</a></li>
+
+	    <li class="menu-item">
+	      <a href="data.html">Data</a></li>
+
+	    <li class="current-menu-item">
+	      <a href="code.html">Code</a></li>
+
+	  </ul>
+      </div></div><!-- menu-header, #access -->
+
+
+    </div> <!-- #img-menu -->
+
+
+    <div id="main">
+
+      <div id="container">
+	<div id="content" role="main">
+
+	  <div class="research_container">
+	    <h1 class="entry-title"></h1>
+	    <br>
+
+	    <p class="research"> <b> <a href="https://github.com/paulnov/anr-bounds">ANR
+	      Bounds</a>: Bound a conditional expectation function (or
+	      other moment) given interval censored data. </b>
+	      (from <a href="http://www.dartmouth.edu/~novosad/asher-novosad-rafkin-bounds.pdf">
+	      Partial Identification of Expectations with Interval
+	      Data</a>) <br>
+
+	      <ul>
+		<li> Numerically calculate bounds on E(y|x) given interval
+		censored data on x, under a monotonicity and/or a curvature
+		restriction.  (Matlab) </li>
+		<li> Analytically calculate E(y|x), interval
+		mobility E(y|x in (a,b)), or any other function of the
+		distribution. (Stata, Matlab with
+		curvature constraint) </li>
+		<li> Analytically calculate upward interval mobility,
+		a measure of upward mobility that is robust to
+		interval censoring. (Stata, Matlab with curvature constraint)</li>
+	      </ul>
+	      <p class="research"><a href="https://github.com/paulnov/anr-bounds">anr-bounds
+	      on Github</a></p>
+	    <br><br>
+
+	    <p class="research"> <b> <a href="https://github.com/paulnov/stata-tex">Stata-Tex</a>: Create custom
+	      LaTeX tables from Stata. </b><br> It's often necessary
+	      to produce an output table that doesn't fit any of the
+	      format provided by the standard tools outreg, esttab,
+	      etc.. Some examples:</p>
+	      <ul class="research"><li class="research">
+		  Showing p-values for differences of coefficients</li>
+		<li> Putting certain coefficients in bold or colors </li>
+		<li> Putting different outcome variables in the same row of a
+		  regression table </li>
+		<li> Multi-panel tables with different formatting in
+		  each panel </li></ul>
+	      <p class="research">Stata-tex allows you to separate the LaTeX table template
+	      from the table data. This lets you set up and compile
+	      exactly the LaTeX table you want, with placeholders for
+	      the data. Then you can generate the data separately,
+		and transfer it into the LaTeX table automatically.</p>
+	      <p class="research"><a href="https://github.com/paulnov/stata-tex">stata-tex on Github</a></p>
+	    <br><br>
+
+	    <p class="research"> <b> <a href="https://github.com/paulnov/masala-merge">Masala Merge</a>: Fuzzy matching of Hindi (or any) names. </b><br> This is
+	      Python and Stata code for fuzzy merging Hindi names. The
+	      algorithm is based on the Levenshtein edit distance
+	      algorithm, which calculates the number of edits,
+	      deletions and insertions required to get from one word
+	      to another. We modified this to lower the cost of
+	      certain substitutions that are common to Hindi,
+	      e.g. KS->X would have a cost of 2 in Levenshtein - we
+	      assign it a cost of 0.2. Modifying this code for another
+	      language consists only of changing this list of costs.</p>
+	    <p class="research">
+	      In addition to calculating edit distances, the program
+	      usees a default set of "smart" thresholds to determine
+	      which fuzzy matches to accept and which ones to
+	      reject. The premise is that you can tolerate a higher
+	      edit distance when matching very long words. The smart
+	      thresholds also reject matches if the next nearest match
+	      is very close - even an exact match should be considered
+	      uncertain if there's another very close match.</p>
+	    <p class="research">
+	      We calibrated costs, common substitutions and smart
+	      distance thresholds by analyzing results from
+	      a set of 500,000 known village name matches from the 1991 and
+	      2001 population censuses. Higher or lower thresholds
+	      may be desirable depending on what you are trying to
+	      match. We use very conservative thresholds; we put a
+	      much higher cost on incorrect matches than on missed
+	      matches. You can raise or lower all thresholds
+	      proportionately with the <code>fuzziness()</code> parameter. The
+	      default is 1.</p>
+	    <p class="research">
+	      There might be a better fuzzy matching program out there
+	      - if so, please let me know about it!  On location name
+	      matches, masala-merge consistently outperforms Stata's
+	      <code>reclink</code>. But <code>reclink</code>'s string similarity algorithm is
+	      going to do better, for example, if you want to match
+	      "Dell Inc." to "Dell Incorporated".
+	    </p>
+	    <p class="research">
+	      If you want to optimize this for another language,
+	      please let me know about it! Just a few lines need to be
+	      changed (but you need to figure out the common
+	      substitutions), and I'd be happy to post the new
+	      language function here.
+	    </p>
+	    <p class="research">
+	    <a href="https://github.com/paulnov/masala-merge">masala-merge
+	    on github</a></p>
+
+
+	  </div><!-- .entry-content -->
+	</div><!-- #post-## -->
+
+	<div class="personal_info">
+	  <h3>Paul Novosad</h3><div><p>Assistant
+  	      Prof. of Economics<br />
+	      6106 Rockefeller Hall, Room 301<br />
+	      Hanover, NH 03755<br />
+	      Email: <a href="mailto:paul DOT novosad AT dartmouth.edu"
+			title="mailto:paul DOT novosad AT dartmouth.edu">paul.novosad AT dartmouth.edu</a></p>
+	  </div>
+	</div>
+      </div><!-- #content -->
+    </div><!-- #container -->
+
+
+
+</div><!-- #main -->
+
+<div id="footer" role="contentinfo">
+  <div id="colophon">
+    &nbsp;
+    
+  </div><!-- #colophon -->
+</div><!-- #footer -->
+
+
+</body>
+</html>
