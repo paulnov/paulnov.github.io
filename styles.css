@@ -1392,3 +1392,11 @@ td.paper {
     border: none;
 } 
 
+/* MAKE EMOJIS BIGGER */
+td.emoji {
+    font-size: 200%;
+    vertical-align: top;
+}
+div.emoji {
+    padding-top: 10px;
+}
