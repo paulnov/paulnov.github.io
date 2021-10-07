@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="styles.css" /> 
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web'
+	  rel='stylesheet' type='text/css'>
+
+    <title>Paul Novosad</title>
+  </head>
+
+  <body>
+
+    <div id="pn-title">
+      <p><a id="pn-title" href="index.html">Paul Novosad</a></p>
+    </div>
+    <div id="img-menu">
+      <div id="pn-masthead">
+
+	<img src="maseru.jpg"
+	     width="1040" alt="urban" />
+      </div> <!-- #masthead -->
+
+
+      <div id="access" role="navigation">
+	<div class="menu-header">
+	  <ul id="menu-main-menu"
+	      class="menu">
+
+	    <li class="current-menu-item">
+	      <a href="index.html">Research</a></li>
+
+	    <li class="menu-item">
+	      <a href="pdf/paul-novosad-cv.pdf">CV</a></li>
+
+	    <li class="menu-item">
+	      <a href="jobs.html">Jobs</a></li>
+
+	    <li class="menu-item">
+	      <a href="data.html">Data</a></li>
+
+	    <li class="menu-item">
+	      <a href="code.html">Code</a></li>
+	  </ul>
+      </div></div><!-- menu-header, #access -->
+
+
+    </div> <!-- #img-menu -->
+
+
+    <div id="main">
+
+      <div id="container">
+	<div id="content" role="main">
+
+	  <div class="research_container">
+
+	    <p class="research"> I am an associate professor of
+	      economics at Dartmouth College. My research examines why poor countries have remained poor for so long, and what policy interventions can help improve people's lives in developing countries. My team builds new open source economic data from information age sources like satellites, and private and government sector data exhaust.
+</p>
+        
+<p class="research">   Some of my recent projects have focused
+	      on <a href="http://devdatalab.org/judicial-bias">judicial bias in India</a>, the <a href="http://paulnovosad.com/pdf/asher-novosad-roads.pdf">impacts of India's large-scale rural roads program</a>, the
+	      <a href="http://paulnovosad.com/pdf/asher-novosad-mining-politics.pdf">impacts of mineral sector development</a>, and on measuring
+	      <a href="http://paulnovosad.com/pdf/anr-india-mobility.pdf">intergenerational mobility in developing countries</a>. I
+	      also have several projects on <a href="http://paulnovosad.com/pdf/nnr-moment-forests.pdf">machine learning</a> and
+	      statistical methods with applications to the
+	      <a href="http://paulnovosad.com/pdf/nra-mortality.pdf">U.S. mortality
+	        crisis</a>. </p>
+
+<p class="research">I am founder
+	      of <a href="http://www.devdatalab.org">Development Data
+	      Lab</a> and a creator
+	      of <a href="http://www.devdatalab.org/shrug">The SHRUG</a>, which <a href="http://samuelasher.com">Sam
+	      Asher</a>, <a href="http://tobiaslunt.com">Toby Lunt</a> and I are turning into the
+	      best open data platform for socioeconomic research in
+	      India and beyond. My Google Scholar page is <a href="https://scholar.google.com/citations?hl=en&user=apnP95IAAAAJ">here</a>.
+	    </p>
+
+      <p><b>Spring 2021 Econ 24 @Dartmouth!</b>
+        <ul>
+          <li><a href="https://www.dropbox.com/s/fxig0pd5je0n7dg/2021-03%20Ec24%20Syllabus.pdf?dl=0">The syllabus</a></li>
+          <li><a href="https://www.youtube.com/watch?v=p7gTE5Ao5XE">A short video</a> describing how the course will work.</li>
+          <li><a href="https://docs.google.com/document/d/1mpqf3VV445C3edqkS6a9wtSeYsrFUNc2lraD0uZzDQg/edit?usp=sharing">The class planner:</a> all topics, readings, and assignments.</li>   
+</ul>        
+
+        <!-- ALL PAPER CONTENT AUTOMATICALLY INSERTED HERE -->
+        <div w3-include-html="content.html"></div>
+        <!-- END AUTOMATIC INSERTION -->
+        
+	  </div><!-- .entry-content -->
+	</div><!-- #post-## -->
+
+	<div class="personal_info">
+	  <h3>Paul Novosad</h3><div><p>Associate
+  	      Prof. of Economics<br />
+	      6106 Rockefeller Hall, Room 301<br />
+	      Hanover, NH 03755<br />
+	      Email: <a href="mailto:paul DOT novosad AT dartmouth.edu"
+			title="mailto:paul DOT novosad AT dartmouth.edu">paul.novosad AT dartmouth.edu</a></p>
+	  </div>
+	</div>
+      </div><!-- #content -->
+    </div><!-- #container -->
+
+
+
+</div><!-- #main -->
+
+<div id="footer" role="contentinfo">
+  <div id="colophon">
+    &nbsp;
+    
+  </div><!-- #colophon -->
+</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<!-- include the content -->
+<script>
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /* Loop through a collection of all HTML elements: */
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /* Make an HTTP request using the attribute value as the file name: */
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /* Remove the attribute, and call this function once more: */
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+        }
+      }
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /* Exit the function: */
+      return;
+    }
+  }
+}
+includeHTML();
+</script>
+
+</body>
+</html>
