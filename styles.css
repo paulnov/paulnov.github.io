@@ -1303,6 +1303,11 @@ div.personal_info {
     width: 220px;
 }
 
+div.toggles {
+    float: right;
+    width: 220px;
+}
+
 body {
     background-color: #ffffff
 }
