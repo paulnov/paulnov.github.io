@@ -367,8 +367,18 @@
 
               // get siblings until we have a table
               while(s != null && s.tagName != 'TABLE') {
+
+                  // if this is a BR, store the node so we can hide it
+                  if(s) {
+                      if(s.tagName == 'BR') {
+                          br = s;
+                      }
+                  }
                   s = s.nextSibling;
               }
+
+              // store the table node
+              table = s
               
               // count the number of displayed TRs in the table
               count = 0;
@@ -381,14 +391,18 @@
                   }
               }
 
-              // if count is zero, hide the heading; else show it
+              // if count is zero, hide the heading and stuff below it; else show it
               if (count == 0) {
                   // alert('hiding')
                   headings[i].style.display = 'none';
+                  table.style.display = 'none';
+                  br.style.display = 'none';
               }
               else {
                   // alert('showing')
                   headings[i].style.display = 'block';
+                  table.style.display = 'block';
+                  br.style.display = 'block';
               }
           }
       }
