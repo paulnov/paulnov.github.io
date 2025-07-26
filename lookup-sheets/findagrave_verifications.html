@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>FindAGrave year mismatches</title>
+  <link rel='stylesheet' href='https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css'>
+  <style>
+    :root { --border:#d0d7de; --bg-btn:#f6f8fa; }
+    body { font-family:system-ui,-apple-system,sans-serif; margin:2rem; color:#24292f; }
+    h1 { font-weight:500; font-size:1.5rem; }
+    table.dataTable { font-size:0.875rem; width:100%; border-collapse:collapse; }
+    table.dataTable th, table.dataTable td { padding:0.35rem 0.5rem; }
+    .copy-btn { border:1px solid var(--border); background:var(--bg-btn); border-radius:4px; padding:2px; cursor:pointer; vertical-align:middle; }
+    .copy-btn:hover { background:#eaeef2; }
+    .copy-icon { pointer-events:none; }
+  </style>
+</head>
+<body>
+  <h1>FindAGrave year mismatches</h1>
+  <p>FindAGrave entries with birth/death year mismatches.</p>
+  <table id="dataTable" class="display">
+  <thead>
+    <tr style="text-align: right;">
+      <th>elite_id</th>
+      <th>wiki_birth_year</th>
+      <th>fag_birth_date</th>
+      <th>fag_birth_year</th>
+      <th>wiki_death_year</th>
+      <th>fag_death_date</th>
+      <th>fag_death_year</th>
+      <th>url</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Barry MacKay::male-tennis-players <button class='copy-btn' data-id='Barry MacKay::male-tennis-players' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1935</td>
+      <td>8 Jan 1906</td>
+      <td>1906.0</td>
+      <td>2012</td>
+      <td>12 Dec 1985 (aged 79)</td>
+      <td>1985.0</td>
+      <td><a href='https://www.findagrave.com/memorial/82795655/barry-mackay' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Cornelius K. Stribling::superintendent_us_naval_academy <button class='copy-btn' data-id='Cornelius K. Stribling::superintendent_us_naval_academy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1796</td>
+      <td>22 Sep 1796</td>
+      <td>NaN</td>
+      <td>1880</td>
+      <td>17 Jan 1880 (aged 83)</td>
+      <td>1880.0</td>
+      <td><a href='https://www.findagrave.com/memorial/37278003/cornelius-kincheloe-stribling' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Daniel Dana::president_dartmouth_college <button class='copy-btn' data-id='Daniel Dana::president_dartmouth_college' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1771</td>
+      <td>24 Jul 1771</td>
+      <td>NaN</td>
+      <td>1859</td>
+      <td>26 Aug 1859 (aged 88)</td>
+      <td>1859.0</td>
+      <td><a href='https://www.findagrave.com/memorial/44025046/daniel-dana' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>George E. Badger::secretary_navy <button class='copy-btn' data-id='George E. Badger::secretary_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1795</td>
+      <td>17 Apr 1795</td>
+      <td>NaN</td>
+      <td>1866</td>
+      <td>11 May 1866 (aged 71)</td>
+      <td>1866.0</td>
+      <td><a href='https://www.findagrave.com/memorial/8091123/george-edmund-badger' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Isaac Toucey::secretary_navy <button class='copy-btn' data-id='Isaac Toucey::secretary_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1792</td>
+      <td>15 Nov 1792</td>
+      <td>NaN</td>
+      <td>1869</td>
+      <td>30 Jul 1869 (aged 76)</td>
+      <td>1869.0</td>
+      <td><a href='https://www.findagrave.com/memorial/6845723/isaac-toucey' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>James Carnahan::president_princeton_university <button class='copy-btn' data-id='James Carnahan::president_princeton_university' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1775</td>
+      <td>15 Nov 1775</td>
+      <td>NaN</td>
+      <td>1859</td>
+      <td>3 Mar 1859 (aged 83)</td>
+      <td>1859.0</td>
+      <td><a href='https://www.findagrave.com/memorial/33177192/james-carnahan' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>John Laurance::judge_advocate_general_us_army <button class='copy-btn' data-id='John Laurance::judge_advocate_general_us_army' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1750</td>
+      <td>1750</td>
+      <td>NaN</td>
+      <td>1810</td>
+      <td>11 Nov 1810 (aged 59–60)</td>
+      <td>1810.0</td>
+      <td><a href='https://www.findagrave.com/memorial/8095996/john-laurance' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Jonathan Dickinson::president_princeton_university <button class='copy-btn' data-id='Jonathan Dickinson::president_princeton_university' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1688</td>
+      <td>22 Apr 1688</td>
+      <td>NaN</td>
+      <td>1747</td>
+      <td>7 Oct 1747 (aged 59)</td>
+      <td>NaN</td>
+      <td><a href='https://www.findagrave.com/memorial/7326404/jonathan-dickinson' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Lloyd Waner::mlb_hall_of_fame_everyone <button class='copy-btn' data-id='Lloyd Waner::mlb_hall_of_fame_everyone' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1906</td>
+      <td>27 Sep 1933</td>
+      <td>1933.0</td>
+      <td>1982</td>
+      <td>20 Feb 2021 (aged 87)</td>
+      <td>2021.0</td>
+      <td><a href='https://www.findagrave.com/memorial/223461573/lloyd_james_waner' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Mahlon Dickerson::secretary_navy <button class='copy-btn' data-id='Mahlon Dickerson::secretary_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1770</td>
+      <td>17 Apr 1770</td>
+      <td>NaN</td>
+      <td>1853</td>
+      <td>5 Oct 1853 (aged 83)</td>
+      <td>1853.0</td>
+      <td><a href='https://www.findagrave.com/memorial/7079592/mahlon-dickerson' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Paul Hamilton::secretary_navy <button class='copy-btn' data-id='Paul Hamilton::secretary_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1762</td>
+      <td>16 Oct 1762</td>
+      <td>NaN</td>
+      <td>1816</td>
+      <td>30 Jun 1816 (aged 53)</td>
+      <td>1816.0</td>
+      <td><a href='https://www.findagrave.com/memorial/7181158/paul-hamilton' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Robert Smith::secretary_navy <button class='copy-btn' data-id='Robert Smith::secretary_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1757</td>
+      <td>3 Nov 1757</td>
+      <td>NaN</td>
+      <td>1842</td>
+      <td>26 Nov 1842 (aged 85)</td>
+      <td>1842.0</td>
+      <td><a href='https://www.findagrave.com/memorial/6856909/robert-smith' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Robert Smith::secretary_state <button class='copy-btn' data-id='Robert Smith::secretary_state' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1757</td>
+      <td>3 Nov 1757</td>
+      <td>NaN</td>
+      <td>1842</td>
+      <td>26 Nov 1842 (aged 85)</td>
+      <td>1842.0</td>
+      <td><a href='https://www.findagrave.com/memorial/6856909/robert-smith' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Samuel L. Southard::secretary_navy <button class='copy-btn' data-id='Samuel L. Southard::secretary_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1787</td>
+      <td>9 Jun 1787</td>
+      <td>NaN</td>
+      <td>1842</td>
+      <td>26 Jun 1842 (aged 55)</td>
+      <td>1842.0</td>
+      <td><a href='https://www.findagrave.com/memorial/6654589/samuel-lewis-southard' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Thomas Clap::president_yale_university <button class='copy-btn' data-id='Thomas Clap::president_yale_university' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1703</td>
+      <td>26 Jun 1703</td>
+      <td>NaN</td>
+      <td>1767</td>
+      <td>7 Jan 1767 (aged 63)</td>
+      <td>NaN</td>
+      <td><a href='https://www.findagrave.com/memorial/13645339/thomas-clap' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>Tommy Helms::National_League_Rookie_of_the_Year <button class='copy-btn' data-id='Tommy Helms::National_League_Rookie_of_the_Year' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1941</td>
+      <td>21 Oct 1971</td>
+      <td>1971.0</td>
+      <td>2025</td>
+      <td>2 Mar 2014 (aged 42)</td>
+      <td>2014.0</td>
+      <td><a href='https://www.findagrave.com/memorial/174084354/tommy_vann-helms' target='_blank'>link</a></td>
+    </tr>
+    <tr>
+      <td>William White::bishops_episcopal_church_US <button class='copy-btn' data-id='William White::bishops_episcopal_church_US' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1748</td>
+      <td>4 Apr 1748</td>
+      <td>NaN</td>
+      <td>1836</td>
+      <td>17 Jul 1836 (aged 88)</td>
+      <td>1836.0</td>
+      <td><a href='https://www.findagrave.com/memorial/7596840/william-white' target='_blank'>link</a></td>
+    </tr>
+  </tbody>
+</table>
+  <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+  <script src='https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js'></script>
+  <script>
+    $(document).ready(function(){
+      if ($('#dataTable').length) $('#dataTable').DataTable({ paging:false });
+      $(document).on('click','.copy-btn',function(){ navigator.clipboard.writeText($(this).data('id')); });
+    });
+  </script>
+</body>
+</html>

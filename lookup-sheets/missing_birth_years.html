@@ -1,0 +1,1316 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Missing birth years</title>
+  <link rel='stylesheet' href='https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css'>
+  <style>
+    :root { --border:#d0d7de; --bg-btn:#f6f8fa; }
+    body { font-family:system-ui,-apple-system,sans-serif; margin:2rem; color:#24292f; }
+    h1 { font-weight:500; font-size:1.5rem; }
+    table.dataTable { font-size:0.875rem; width:100%; border-collapse:collapse; }
+    table.dataTable th, table.dataTable td { padding:0.35rem 0.5rem; }
+    .copy-btn { border:1px solid var(--border); background:var(--bg-btn); border-radius:4px; padding:2px; cursor:pointer; vertical-align:middle; }
+    .copy-btn:hover { background:#eaeef2; }
+    .copy-icon { pointer-events:none; }
+  </style>
+</head>
+<body>
+  <h1>Missing birth years</h1>
+  <p>Elites with unknown birth year.</p>
+  <table id="dataTable" class="display">
+  <thead>
+    <tr style="text-align: right;">
+      <th>elite_id</th>
+      <th>event_year</th>
+      <th>wiki_page</th>
+      <th>google_biography</th>
+      <th>google_obituary</th>
+      <th>google_father</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Adnan Abidi::pulitzer_photography <button class='copy-btn' data-id='Adnan Abidi::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Adnan_Abidi' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Adnan+Abidi+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Adnan+Abidi+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Adnan+Abidi+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Alexander J. Dallas::secretary_treasury <button class='copy-btn' data-id='Alexander J. Dallas::secretary_treasury' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Alexander_J._Dallas' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Alexander+J.+Dallas+secretary+treasury' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Alexander+J.+Dallas+secretary+treasury' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Alexander+J.+Dallas+secretary+treasury' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Alice Crites::pulitzer_investigative_reporting <button class='copy-btn' data-id='Alice Crites::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Alice_Crites' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Alice+Crites+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Alice+Crites+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Alice+Crites+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Amit Dave::pulitzer_photography <button class='copy-btn' data-id='Amit Dave::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Amit_Dave' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Amit+Dave+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Amit+Dave+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Amit+Dave+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Andrea Elliott::pulitzer_feature_writing <button class='copy-btn' data-id='Andrea Elliott::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Andrea_Elliott' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Andrea+Elliott+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Andrea+Elliott+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Andrea+Elliott+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Anna Wolfe::pulitzer_editorial_writing <button class='copy-btn' data-id='Anna Wolfe::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Anna_Wolfe' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Anna+Wolfe+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Anna+Wolfe+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Anna+Wolfe+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Anna Wolfe::pulitzer_reporting <button class='copy-btn' data-id='Anna Wolfe::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Anna_Wolfe' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Anna+Wolfe+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Anna+Wolfe+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Anna+Wolfe+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Anthony Cormier::pulitzer_investigative_reporting <button class='copy-btn' data-id='Anthony Cormier::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Anthony_Cormier' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Anthony+Cormier+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Anthony+Cormier+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Anthony+Cormier+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Anthony Suau::pulitzer_photography <button class='copy-btn' data-id='Anthony Suau::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Anthony_Suau' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Anthony+Suau+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Anthony+Suau+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Anthony+Suau+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Barbara Davidson::pulitzer_photography <button class='copy-btn' data-id='Barbara Davidson::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Barbara_Davidson' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Barbara+Davidson+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Barbara+Davidson+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Barbara+Davidson+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Bill Dedman::pulitzer_investigative_reporting <button class='copy-btn' data-id='Bill Dedman::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Bill_Dedman' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Bill+Dedman+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Bill+Dedman+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Bill+Dedman+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Binyamin Appelbaum::pulitzer_editorial_writing <button class='copy-btn' data-id='Binyamin Appelbaum::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Binyamin_Appelbaum  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Binyamin+Appelbaum+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Binyamin+Appelbaum+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Binyamin+Appelbaum+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Binyamin Appelbaum::pulitzer_reporting <button class='copy-btn' data-id='Binyamin Appelbaum::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Binyamin_Appelbaum  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Binyamin+Appelbaum+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Binyamin+Appelbaum+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Binyamin+Appelbaum+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Blair Kamin::pulitzer_commentary <button class='copy-btn' data-id='Blair Kamin::pulitzer_commentary' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Blair_Kamin' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Blair+Kamin+pulitzer+commentary' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Blair+Kamin+pulitzer+commentary' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Blair+Kamin+pulitzer+commentary' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Charles N. Pede::judge_advocate_general_us_army <button class='copy-btn' data-id='Charles N. Pede::judge_advocate_general_us_army' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Charles_N._Pede' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Charles+N.+Pede+judge+advocate+general+us+army' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Charles+N.+Pede+judge+advocate+general+us+army' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Charles+N.+Pede+judge+advocate+general+us+army' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Charles R. Hamilton::commanding_general_us_army_materiel_command <button class='copy-btn' data-id='Charles R. Hamilton::commanding_general_us_army_materiel_command' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Charles_R._Hamilton' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Charles+R.+Hamilton+commanding+general+us+army+materiel+command' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Charles+R.+Hamilton+commanding+general+us+army+materiel+command' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Charles+R.+Hamilton+commanding+general+us+army+materiel+command' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Christopher G. Cavoli::commanding_general_us_army_europe_and_africa <button class='copy-btn' data-id='Christopher G. Cavoli::commanding_general_us_army_europe_and_africa' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Christopher_G._Cavoli' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Christopher+G.+Cavoli+commanding+general+us+army+europe+and+africa' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Christopher+G.+Cavoli+commanding+general+us+army+europe+and+africa' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Christopher+G.+Cavoli+commanding+general+us+army+europe+and+africa' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Christopher G. Cavoli::commanding_general_us_army_pacific <button class='copy-btn' data-id='Christopher G. Cavoli::commanding_general_us_army_pacific' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Christopher_G._Cavoli' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Christopher+G.+Cavoli+commanding+general+us+army+pacific' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Christopher+G.+Cavoli+commanding+general+us+army+pacific' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Christopher+G.+Cavoli+commanding+general+us+army+pacific' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Christopher O. Mohan::commanding_general_us_army_materiel_command <button class='copy-btn' data-id='Christopher O. Mohan::commanding_general_us_army_materiel_command' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Christopher_O._Mohan' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Christopher+O.+Mohan+commanding+general+us+army+materiel+command' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Christopher+O.+Mohan+commanding+general+us+army+materiel+command' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Christopher+O.+Mohan+commanding+general+us+army+materiel+command' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Clark Hoyt::pulitzer_editorial_writing <button class='copy-btn' data-id='Clark Hoyt::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Clark_Hoyt' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Clark+Hoyt+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Clark+Hoyt+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Clark+Hoyt+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Clark Hoyt::pulitzer_reporting <button class='copy-btn' data-id='Clark Hoyt::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Clark_Hoyt' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Clark+Hoyt+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Clark+Hoyt+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Clark+Hoyt+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Craig F. Walker::pulitzer_photography <button class='copy-btn' data-id='Craig F. Walker::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Craig_F._Walker' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Craig+F.+Walker+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Craig+F.+Walker+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Craig+F.+Walker+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Dana Priest::pulitzer_public_service <button class='copy-btn' data-id='Dana Priest::pulitzer_public_service' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Dana_Priest' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Dana+Priest+pulitzer+public+service' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Dana+Priest+pulitzer+public+service' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Dana+Priest+pulitzer+public+service' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>David A. Flosi::chief_master_sergeant_air_force <button class='copy-btn' data-id='David A. Flosi::chief_master_sergeant_air_force' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/David_A._Flosi ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+David+A.+Flosi+chief+master+sergeant+air+force' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+David+A.+Flosi+chief+master+sergeant+air+force' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+David+A.+Flosi+chief+master+sergeant+air+force' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>David Hasemyer::pulitzer_editorial_writing <button class='copy-btn' data-id='David Hasemyer::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/David_Hasemyer' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+David+Hasemyer+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+David+Hasemyer+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+David+Hasemyer+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>David Hasemyer::pulitzer_reporting <button class='copy-btn' data-id='David Hasemyer::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/David_Hasemyer' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+David+Hasemyer+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+David+Hasemyer+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+David+Hasemyer+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>David Wood::pulitzer_editorial_writing <button class='copy-btn' data-id='David Wood::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/David_Wood_(journalist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+David+Wood+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+David+Wood+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+David+Wood+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>David Wood::pulitzer_reporting <button class='copy-btn' data-id='David Wood::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/David_Wood_(journalist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+David+Wood+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+David+Wood+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+David+Wood+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>David Zucchino::pulitzer_feature_writing <button class='copy-btn' data-id='David Zucchino::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/David_Zucchino' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+David+Zucchino+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+David+Zucchino+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+David+Zucchino+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Denise L. Carter::secretary_education <button class='copy-btn' data-id='Denise L. Carter::secretary_education' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Denise_L._Carter' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Denise+L.+Carter+secretary+education' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Denise+L.+Carter+secretary+education' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Denise+L.+Carter+secretary+education' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Dominic Gates::pulitzer_editorial_writing <button class='copy-btn' data-id='Dominic Gates::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Dominic_Gates' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Dominic+Gates+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Dominic+Gates+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Dominic+Gates+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Dominic Gates::pulitzer_reporting <button class='copy-btn' data-id='Dominic Gates::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Dominic_Gates' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Dominic+Gates+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Dominic+Gates+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Dominic+Gates+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Du Yun::pulitzer_music <button class='copy-btn' data-id='Du Yun::pulitzer_music' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Du_Yun' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Du+Yun+pulitzer+music' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Du+Yun+pulitzer+music' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Du+Yun+pulitzer+music' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>E. Jason Wambsgans::pulitzer_photography <button class='copy-btn' data-id='E. Jason Wambsgans::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/E._Jason_Wambsgans' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+E.+Jason+Wambsgans+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+E.+Jason+Wambsgans+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+E.+Jason+Wambsgans+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Erik Raven::under_secretary_navy <button class='copy-btn' data-id='Erik Raven::under_secretary_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Erik_Raven ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Erik+Raven+under+secretary+navy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Erik+Raven+under+secretary+navy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Erik+Raven+under+secretary+navy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Evgeniy Maloletka::pulitzer_public_service <button class='copy-btn' data-id='Evgeniy Maloletka::pulitzer_public_service' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Evgeniy_Maloletka' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Evgeniy+Maloletka+pulitzer+public+service' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Evgeniy+Maloletka+pulitzer+public+service' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Evgeniy+Maloletka+pulitzer+public+service' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Frank Thomas::mvp_baseball <button class='copy-btn' data-id='Frank Thomas::mvp_baseball' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Frank_Thomas' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Frank+Thomas+mvp+baseball' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Frank+Thomas+mvp+baseball' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Frank+Thomas+mvp+baseball' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Gabriella Demczuk::pulitzer_photography <button class='copy-btn' data-id='Gabriella Demczuk::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Gabriella_Demczuk' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Gabriella+Demczuk+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Gabriella+Demczuk+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Gabriella+Demczuk+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Gary A. Ashworth::secretary_air_force <button class='copy-btn' data-id='Gary A. Ashworth::secretary_air_force' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Gary_A._Ashworth ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Gary+A.+Ashworth+secretary+air+force' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Gary+A.+Ashworth+secretary+air+force' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Gary+A.+Ashworth+secretary+air+force' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Gene Weingarten::pulitzer_feature_writing <button class='copy-btn' data-id='Gene Weingarten::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Gene_Weingarten' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Gene+Weingarten+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Gene+Weingarten+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Gene+Weingarten+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>George Rodrigue::pulitzer_editorial_writing <button class='copy-btn' data-id='George Rodrigue::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/George_Rodrigue_(journalist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+George+Rodrigue+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+George+Rodrigue+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+George+Rodrigue+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>George Rodrigue::pulitzer_reporting <button class='copy-btn' data-id='George Rodrigue::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/George_Rodrigue_(journalist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+George+Rodrigue+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+George+Rodrigue+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+George+Rodrigue+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Hannah Dreier::pulitzer_editorial_writing <button class='copy-btn' data-id='Hannah Dreier::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Hannah_Dreier' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Hannah+Dreier+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Hannah+Dreier+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Hannah+Dreier+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Hannah Dreier::pulitzer_feature_writing <button class='copy-btn' data-id='Hannah Dreier::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Hannah_Dreier' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Hannah+Dreier+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Hannah+Dreier+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Hannah+Dreier+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Hannah Dreier::pulitzer_reporting <button class='copy-btn' data-id='Hannah Dreier::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Hannah_Dreier' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Hannah+Dreier+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Hannah+Dreier+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Hannah+Dreier+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>J. Larry Jameson::president_university_pennsylvania <button class='copy-btn' data-id='J. Larry Jameson::president_university_pennsylvania' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/J._Larry_Jameson ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+J.+Larry+Jameson+president+university+pennsylvania' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+J.+Larry+Jameson+president+university+pennsylvania' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+J.+Larry+Jameson+president+university+pennsylvania' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>J. Ross Baughman::pulitzer_photography <button class='copy-btn' data-id='J. Ross Baughman::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/J._Ross_Baughman' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+J.+Ross+Baughman+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+J.+Ross+Baughman+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+J.+Ross+Baughman+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jake Bernstein::pulitzer_editorial_writing <button class='copy-btn' data-id='Jake Bernstein::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jake_Bernstein_(journalist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jake+Bernstein+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jake+Bernstein+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jake+Bernstein+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jake Bernstein::pulitzer_reporting <button class='copy-btn' data-id='Jake Bernstein::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jake_Bernstein_(journalist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jake+Bernstein+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jake+Bernstein+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jake+Bernstein+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>James B. Hecker::commander_us_air_forces_europe_africa <button class='copy-btn' data-id='James B. Hecker::commander_us_air_forces_europe_africa' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/James_B._Hecker ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+James+B.+Hecker+commander+us+air+forces+europe+africa' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+James+B.+Hecker+commander+us+air+forces+europe+africa' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+James+B.+Hecker+commander+us+air+forces+europe+africa' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jeff Brazil::pulitzer_investigative_reporting <button class='copy-btn' data-id='Jeff Brazil::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jeff_Brazil' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jeff+Brazil+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jeff+Brazil+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jeff+Brazil+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jeffrey A. Marx::pulitzer_investigative_reporting <button class='copy-btn' data-id='Jeffrey A. Marx::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jeffrey_A._Marx' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jeffrey+A.+Marx+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jeffrey+A.+Marx+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jeffrey+A.+Marx+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jennifer Senior::pulitzer_feature_writing <button class='copy-btn' data-id='Jennifer Senior::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jennifer_Senior' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jennifer+Senior+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jennifer+Senior+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jennifer+Senior+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jeremy Pelter::secretary_commerce <button class='copy-btn' data-id='Jeremy Pelter::secretary_commerce' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jeremy_Pelter' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jeremy+Pelter+secretary+commerce' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jeremy+Pelter+secretary+commerce' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jeremy+Pelter+secretary+commerce' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jesse Eisinger::pulitzer_editorial_writing <button class='copy-btn' data-id='Jesse Eisinger::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jesse_Eisinger' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jesse+Eisinger+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jesse+Eisinger+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jesse+Eisinger+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jesse Eisinger::pulitzer_reporting <button class='copy-btn' data-id='Jesse Eisinger::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jesse_Eisinger' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jesse+Eisinger+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jesse+Eisinger+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jesse+Eisinger+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jessica Rinaldi::pulitzer_photography <button class='copy-btn' data-id='Jessica Rinaldi::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jessica_Rinaldi' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jessica+Rinaldi+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jessica+Rinaldi+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jessica+Rinaldi+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jo Becker::pulitzer_editorial_writing <button class='copy-btn' data-id='Jo Becker::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jo_Becker' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jo+Becker+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jo+Becker+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jo+Becker+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jo Becker::pulitzer_investigative_reporting <button class='copy-btn' data-id='Jo Becker::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jo_Becker' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jo+Becker+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jo+Becker+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jo+Becker+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Jo Becker::pulitzer_reporting <button class='copy-btn' data-id='Jo Becker::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Jo_Becker' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Jo+Becker+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Jo+Becker+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Jo+Becker+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Joe Campa::master_chief_petty_officer_navy <button class='copy-btn' data-id='Joe Campa::master_chief_petty_officer_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Joe_Campa' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Joe+Campa+master+chief+petty+officer+navy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Joe+Campa+master+chief+petty+officer+navy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Joe+Campa+master+chief+petty+officer+navy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>John Carreyrou::pulitzer_investigative_reporting <button class='copy-btn' data-id='John Carreyrou::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/John_Carreyrou' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+John+Carreyrou+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+John+Carreyrou+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+John+Carreyrou+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>John Harold Brislin::pulitzer_investigative_reporting <button class='copy-btn' data-id='John Harold Brislin::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/John_Harold_Brislin' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+John+Harold+Brislin+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+John+Harold+Brislin+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+John+Harold+Brislin+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>John M. Brown III::commanding_general_us_army_pacific <button class='copy-btn' data-id='John M. Brown III::commanding_general_us_army_pacific' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/John_M._Brown_III' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+John+M.+Brown+III+commanding+general+us+army+pacific' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+John+M.+Brown+III+commanding+general+us+army+pacific' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+John+M.+Brown+III+commanding+general+us+army+pacific' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Joseph T. Hallinan::pulitzer_investigative_reporting <button class='copy-btn' data-id='Joseph T. Hallinan::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Joseph_T._Hallinan' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Joseph+T.+Hallinan+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Joseph+T.+Hallinan+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Joseph+T.+Hallinan+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Julia Keller::pulitzer_feature_writing <button class='copy-btn' data-id='Julia Keller::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Julia_Keller' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Julia+Keller+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Julia+Keller+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Julia+Keller+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Kaleth O. Wright::chief_master_sergeant_air_force <button class='copy-btn' data-id='Kaleth O. Wright::chief_master_sergeant_air_force' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Kaleth_O._Wright' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Kaleth+O.+Wright+chief+master+sergeant+air+force' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Kaleth+O.+Wright+chief+master+sergeant+air+force' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Kaleth+O.+Wright+chief+master+sergeant+air+force' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Kathryn Schulz::pulitzer_feature_writing <button class='copy-btn' data-id='Kathryn Schulz::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Kathryn_Schulz' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Kathryn+Schulz+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Kathryn+Schulz+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Kathryn+Schulz+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Katie Benner::pulitzer_editorial_writing <button class='copy-btn' data-id='Katie Benner::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Katie_Benner  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Katie+Benner+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Katie+Benner+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Katie+Benner+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Katie Benner::pulitzer_reporting <button class='copy-btn' data-id='Katie Benner::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Katie_Benner  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Katie+Benner+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Katie+Benner+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Katie+Benner+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Katie Engelhart::pulitzer_feature_writing <button class='copy-btn' data-id='Katie Engelhart::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Katie_Engelhart ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Katie+Engelhart+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Katie+Engelhart+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Katie+Engelhart+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Katrina Armstrong::president_columbia_university <button class='copy-btn' data-id='Katrina Armstrong::president_columbia_university' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Katrina_Armstrong ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Katrina+Armstrong+president+columbia+university' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Katrina+Armstrong+president+columbia+university' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Katrina+Armstrong+president+columbia+university' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Ken Armstrong::pulitzer_investigative_reporting <button class='copy-btn' data-id='Ken Armstrong::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Ken_Armstrong_(journalist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Ken+Armstrong+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Ken+Armstrong+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Ken+Armstrong+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Kristyn E. Jones::under_secretary_air_force <button class='copy-btn' data-id='Kristyn E. Jones::under_secretary_air_force' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Kristyn_E._Jones' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Kristyn+E.+Jones+under+secretary+air+force' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Kristyn+E.+Jones+under+secretary+air+force' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Kristyn+E.+Jones+under+secretary+air+force' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Lane DeGregory::pulitzer_feature_writing <button class='copy-btn' data-id='Lane DeGregory::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Lane_DeGregory' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Lane+DeGregory+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Lane+DeGregory+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Lane+DeGregory+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Leonora LaPeter Anton::pulitzer_investigative_reporting <button class='copy-btn' data-id='Leonora LaPeter Anton::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Leonora_LaPeter_Anton' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Leonora+LaPeter+Anton+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Leonora+LaPeter+Anton+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Leonora+LaPeter+Anton+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Lisa Song::pulitzer_editorial_writing <button class='copy-btn' data-id='Lisa Song::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Lisa_Song' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Lisa+Song+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Lisa+Song+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Lisa+Song+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Lisa Song::pulitzer_reporting <button class='copy-btn' data-id='Lisa Song::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Lisa_Song' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Lisa+Song+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Lisa+Song+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Lisa+Song+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Lorraine Adams::pulitzer_investigative_reporting <button class='copy-btn' data-id='Lorraine Adams::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Lorraine_Adams' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Lorraine+Adams+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Lorraine+Adams+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Lorraine+Adams+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Manny Crisostomo::pulitzer_photography <button class='copy-btn' data-id='Manny Crisostomo::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Manny_Crisostomo' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Manny+Crisostomo+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Manny+Crisostomo+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Manny+Crisostomo+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Margaret Sullivan::pulitzer_editorial_writing <button class='copy-btn' data-id='Margaret Sullivan::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Margaret_Sullivan_(journalist)  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Margaret+Sullivan+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Margaret+Sullivan+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Margaret+Sullivan+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Margaret Sullivan::pulitzer_reporting <button class='copy-btn' data-id='Margaret Sullivan::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Margaret_Sullivan_(journalist)  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Margaret+Sullivan+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Margaret+Sullivan+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Margaret+Sullivan+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Margie Mason::pulitzer_investigative_reporting <button class='copy-btn' data-id='Margie Mason::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Margie_Mason' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Margie+Mason+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Margie+Mason+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Margie+Mason+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Margie Mason::pulitzer_public_service <button class='copy-btn' data-id='Margie Mason::pulitzer_public_service' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Margie_Mason' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Margie+Mason+pulitzer+public+service' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Margie+Mason+pulitzer+public+service' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Margie+Mason+pulitzer+public+service' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Matthew L. Nathan::chief_bureau_medicine_and_surgery <button class='copy-btn' data-id='Matthew L. Nathan::chief_bureau_medicine_and_surgery' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Matthew_L._Nathan' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Matthew+L.+Nathan+chief+bureau+medicine+and+surgery' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Matthew+L.+Nathan+chief+bureau+medicine+and+surgery' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Matthew+L.+Nathan+chief+bureau+medicine+and+surgery' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Megan Rose::pulitzer_editorial_writing <button class='copy-btn' data-id='Megan Rose::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Megan_Rose' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Megan+Rose+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Megan+Rose+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Megan+Rose+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Megan Rose::pulitzer_reporting <button class='copy-btn' data-id='Megan Rose::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Megan_Rose' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Megan+Rose+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Megan+Rose+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Megan+Rose+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Megan Twohey::pulitzer_editorial_writing <button class='copy-btn' data-id='Megan Twohey::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Megan_Twohey  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Megan+Twohey+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Megan+Twohey+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Megan+Twohey+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Megan Twohey::pulitzer_reporting <button class='copy-btn' data-id='Megan Twohey::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Megan_Twohey  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Megan+Twohey+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Megan+Twohey+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Megan+Twohey+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Melinda Henneberger::pulitzer_commentary <button class='copy-btn' data-id='Melinda Henneberger::pulitzer_commentary' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Melinda_Henneberger' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Melinda+Henneberger+pulitzer+commentary' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Melinda+Henneberger+pulitzer+commentary' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Melinda+Henneberger+pulitzer+commentary' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Melissa Dalton::under_secretary_air_force <button class='copy-btn' data-id='Melissa Dalton::under_secretary_air_force' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Melissa_Dalton' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Melissa+Dalton+under+secretary+air+force' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Melissa+Dalton+under+secretary+air+force' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Melissa+Dalton+under+secretary+air+force' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael D. Sallah::pulitzer_investigative_reporting <button class='copy-btn' data-id='Michael D. Sallah::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_D._Sallah' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+D.+Sallah+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+D.+Sallah+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+D.+Sallah+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael D. Stevens::master_chief_petty_officer_navy <button class='copy-btn' data-id='Michael D. Stevens::master_chief_petty_officer_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_D._Stevens' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+D.+Stevens+master+chief+petty+officer+navy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+D.+Stevens+master+chief+petty+officer+navy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+D.+Stevens+master+chief+petty+officer+navy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael Forsythe::pulitzer_editorial_writing <button class='copy-btn' data-id='Michael Forsythe::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_Forsythe  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+Forsythe+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+Forsythe+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+Forsythe+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael Forsythe::pulitzer_reporting <button class='copy-btn' data-id='Michael Forsythe::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_Forsythe  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+Forsythe+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+Forsythe+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+Forsythe+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael J. Berens::pulitzer_investigative_reporting <button class='copy-btn' data-id='Michael J. Berens::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_J._Berens' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+J.+Berens+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+J.+Berens+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+J.+Berens+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael Kotlikoff::president_cornell_university <button class='copy-btn' data-id='Michael Kotlikoff::president_cornell_university' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_Kotlikoff' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+Kotlikoff+president+cornell+university' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+Kotlikoff+president+cornell+university' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+Kotlikoff+president+cornell+university' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael R. Gordon::pulitzer_editorial_writing <button class='copy-btn' data-id='Michael R. Gordon::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_R._Gordon  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+R.+Gordon+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+R.+Gordon+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+R.+Gordon+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael R. Gordon::pulitzer_reporting <button class='copy-btn' data-id='Michael R. Gordon::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_R._Gordon  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+R.+Gordon+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+R.+Gordon+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+R.+Gordon+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael R. Weimer::sergeant_major_army <button class='copy-btn' data-id='Michael R. Weimer::sergeant_major_army' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_R._Weimer ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+R.+Weimer+sergeant+major+army' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+R.+Weimer+sergeant+major+army' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+R.+Weimer+sergeant+major+army' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael Slackman::pulitzer_breaking_news <button class='copy-btn' data-id='Michael Slackman::pulitzer_breaking_news' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_Slackman' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+Slackman+pulitzer+breaking+news' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+Slackman+pulitzer+breaking+news' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+Slackman+pulitzer+breaking+news' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Milton J. Sands III::commander_us_naval_special_warfare_command <button class='copy-btn' data-id='Milton J. Sands III::commander_us_naval_special_warfare_command' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Milton_J._Sands_III ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Milton+J.+Sands+III+commander+us+naval+special+warfare+command' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Milton+J.+Sands+III+commander+us+naval+special+warfare+command' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Milton+J.+Sands+III+commander+us+naval+special+warfare+command' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Mitchell S. Jackson::pulitzer_feature_writing <button class='copy-btn' data-id='Mitchell S. Jackson::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Mitchell_S._Jackson' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Mitchell+S.+Jackson+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Mitchell+S.+Jackson+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Mitchell+S.+Jackson+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Mukhtar Khan::pulitzer_photography <button class='copy-btn' data-id='Mukhtar Khan::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Mukhtar_Khan' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Mukhtar+Khan+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Mukhtar+Khan+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Mukhtar+Khan+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Nadja Drost::pulitzer_feature_writing <button class='copy-btn' data-id='Nadja Drost::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Nadja_Drost' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Nadja+Drost+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Nadja+Drost+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Nadja+Drost+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Nanette M. DeRenzi::judge_advocate_general_navy <button class='copy-btn' data-id='Nanette M. DeRenzi::judge_advocate_general_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Nanette_M._DeRenzi' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Nanette+M.+DeRenzi+judge+advocate+general+navy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Nanette+M.+DeRenzi+judge+advocate+general+navy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Nanette+M.+DeRenzi+judge+advocate+general+navy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Nicholas B. Dirks::president_uc_berkeley <button class='copy-btn' data-id='Nicholas B. Dirks::president_uc_berkeley' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Nicholas_B._Dirks' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Nicholas+B.+Dirks+president+uc+berkeley' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Nicholas+B.+Dirks+president+uc+berkeley' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Nicholas+B.+Dirks+president+uc+berkeley' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Noam Scheiber::pulitzer_editorial_writing <button class='copy-btn' data-id='Noam Scheiber::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Noam_Scheiber  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Noam+Scheiber+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Noam+Scheiber+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Noam+Scheiber+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Noam Scheiber::pulitzer_reporting <button class='copy-btn' data-id='Noam Scheiber::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Noam_Scheiber  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Noam+Scheiber+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Noam+Scheiber+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Noam+Scheiber+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Patricia Callahan::pulitzer_investigative_reporting <button class='copy-btn' data-id='Patricia Callahan::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Patricia_Callahan' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Patricia+Callahan+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Patricia+Callahan+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Patricia+Callahan+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Philip Kennicott::pulitzer_commentary <button class='copy-btn' data-id='Philip Kennicott::pulitzer_commentary' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Philip_Kennicott' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Philip+Kennicott+pulitzer+commentary' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Philip+Kennicott+pulitzer+commentary' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Philip+Kennicott+pulitzer+commentary' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Preston Gannaway::pulitzer_photography <button class='copy-btn' data-id='Preston Gannaway::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Preston_Gannaway' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Preston+Gannaway+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Preston+Gannaway+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Preston+Gannaway+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>R. Jeffrey Smith::pulitzer_investigative_reporting <button class='copy-btn' data-id='R. Jeffrey Smith::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/R._Jeffrey_Smith' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+R.+Jeffrey+Smith+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+R.+Jeffrey+Smith+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+R.+Jeffrey+Smith+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Rick Bragg::pulitzer_feature_writing <button class='copy-btn' data-id='Rick Bragg::pulitzer_feature_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Rick_Bragg' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Rick+Bragg+pulitzer+feature+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Rick+Bragg+pulitzer+feature+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Rick+Bragg+pulitzer+feature+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Robert J. Murray::under_secretary_navy <button class='copy-btn' data-id='Robert J. Murray::under_secretary_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Robert_J._Murray' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Robert+J.+Murray+under+secretary+navy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Robert+J.+Murray+under+secretary+navy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Robert+J.+Murray+under+secretary+navy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Rone Tempest::pulitzer_breaking_news <button class='copy-btn' data-id='Rone Tempest::pulitzer_breaking_news' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Rone_Tempest' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Rone+Tempest+pulitzer+breaking+news' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Rone+Tempest+pulitzer+breaking+news' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Rone+Tempest+pulitzer+breaking+news' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Russell L. Smith::master_chief_petty_officer_navy <button class='copy-btn' data-id='Russell L. Smith::master_chief_petty_officer_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Russell_L._Smith' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Russell+L.+Smith+master+chief+petty+officer+navy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Russell+L.+Smith+master+chief+petty+officer+navy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Russell+L.+Smith+master+chief+petty+officer+navy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Ryan Gabrielson::pulitzer_editorial_writing <button class='copy-btn' data-id='Ryan Gabrielson::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Ryan_Gabrielson  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Ryan+Gabrielson+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Ryan+Gabrielson+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Ryan+Gabrielson+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Ryan Gabrielson::pulitzer_reporting <button class='copy-btn' data-id='Ryan Gabrielson::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Ryan_Gabrielson  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Ryan+Gabrielson+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Ryan+Gabrielson+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Ryan+Gabrielson+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Sam Roe::pulitzer_investigative_reporting <button class='copy-btn' data-id='Sam Roe::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Sam_Roe' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Sam+Roe+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Sam+Roe+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Sam+Roe+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Sarah Cohen::pulitzer_investigative_reporting <button class='copy-btn' data-id='Sarah Cohen::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Sarah_Cohen_(journalist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Sarah+Cohen+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Sarah+Cohen+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Sarah+Cohen+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Sari Horwitz::pulitzer_investigative_reporting <button class='copy-btn' data-id='Sari Horwitz::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Sari_Horwitz' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Sari+Horwitz+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Sari+Horwitz+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Sari+Horwitz+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Scott Higham::pulitzer_investigative_reporting <button class='copy-btn' data-id='Scott Higham::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Scott_Higham' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Scott+Higham+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Scott+Higham+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Scott+Higham+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Sheri Fink::pulitzer_editorial_writing <button class='copy-btn' data-id='Sheri Fink::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Sheri_Fink  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Sheri+Fink+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Sheri+Fink+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Sheri+Fink+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Sheri Fink::pulitzer_reporting <button class='copy-btn' data-id='Sheri Fink::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Sheri_Fink  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Sheri+Fink+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Sheri+Fink+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Sheri+Fink+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Stephanie Saul::pulitzer_editorial_writing <button class='copy-btn' data-id='Stephanie Saul::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Stephanie_Saul  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Stephanie+Saul+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Stephanie+Saul+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Stephanie+Saul+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Stephanie Saul::pulitzer_investigative_reporting <button class='copy-btn' data-id='Stephanie Saul::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Stephanie_Saul' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Stephanie+Saul+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Stephanie+Saul+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Stephanie+Saul+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Stephanie Saul::pulitzer_reporting <button class='copy-btn' data-id='Stephanie Saul::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Stephanie_Saul  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Stephanie+Saul+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Stephanie+Saul+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Stephanie+Saul+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Steven Pearlstein::pulitzer_commentary <button class='copy-btn' data-id='Steven Pearlstein::pulitzer_commentary' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Steven_Pearlstein' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Steven+Pearlstein+pulitzer+commentary' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Steven+Pearlstein+pulitzer+commentary' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Steven+Pearlstein+pulitzer+commentary' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Steven S. Giordano::master_chief_petty_officer_navy <button class='copy-btn' data-id='Steven S. Giordano::master_chief_petty_officer_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Steven_S._Giordano' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Steven+S.+Giordano+master+chief+petty+officer+navy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Steven+S.+Giordano+master+chief+petty+officer+navy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Steven+S.+Giordano+master+chief+petty+officer+navy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Steven W. Gilland::superintendent_us_military_academy <button class='copy-btn' data-id='Steven W. Gilland::superintendent_us_military_academy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Steven_W._Gilland' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Steven+W.+Gilland+superintendent+us+military+academy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Steven+W.+Gilland+superintendent+us+military+academy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Steven+W.+Gilland+superintendent+us+military+academy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Stuart W. Risch::judge_advocate_general_us_army <button class='copy-btn' data-id='Stuart W. Risch::judge_advocate_general_us_army' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Stuart_W._Risch' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Stuart+W.+Risch+judge+advocate+general+us+army' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Stuart+W.+Risch+judge+advocate+general+us+army' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Stuart+W.+Risch+judge+advocate+general+us+army' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Susan Schmidt::pulitzer_investigative_reporting <button class='copy-btn' data-id='Susan Schmidt::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Susan_Schmidt' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Susan+Schmidt+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Susan+Schmidt+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Susan+Schmidt+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Terry D. Scott::master_chief_petty_officer_navy <button class='copy-btn' data-id='Terry D. Scott::master_chief_petty_officer_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Terry_D._Scott' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Terry+D.+Scott+master+chief+petty+officer+navy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Terry+D.+Scott+master+chief+petty+officer+navy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Terry+D.+Scott+master+chief+petty+officer+navy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Thomas E. Trask::general_superintendent_assemblies_of_god_USA <button class='copy-btn' data-id='Thomas E. Trask::general_superintendent_assemblies_of_god_USA' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Thomas_E._Trask' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Thomas+E.+Trask+general+superintendent+assemblies+of+god+USA' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Thomas+E.+Trask+general+superintendent+assemblies+of+god+USA' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Thomas+E.+Trask+general+superintendent+assemblies+of+god+USA' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Tim Arango::pulitzer_editorial_writing <button class='copy-btn' data-id='Tim Arango::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Tim_Arango  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Tim+Arango+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Tim+Arango+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Tim+Arango+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Tim Arango::pulitzer_reporting <button class='copy-btn' data-id='Tim Arango::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Tim_Arango  ' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Tim+Arango+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Tim+Arango+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Tim+Arango+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Tom Gralish::pulitzer_photography <button class='copy-btn' data-id='Tom Gralish::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Tom_Gralish' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Tom+Gralish+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Tom+Gralish+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Tom+Gralish+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Tony Messenger::pulitzer_commentary <button class='copy-btn' data-id='Tony Messenger::pulitzer_commentary' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Tony_Messenger' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Tony+Messenger+pulitzer+commentary' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Tony+Messenger+pulitzer+commentary' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Tony+Messenger+pulitzer+commentary' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Tyler Hicks::pulitzer_photography <button class='copy-btn' data-id='Tyler Hicks::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Tyler_Hicks' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Tyler+Hicks+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Tyler+Hicks+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Tyler+Hicks+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Vasilisa Stepanenko::pulitzer_public_service <button class='copy-btn' data-id='Vasilisa Stepanenko::pulitzer_public_service' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Vasilisa_Stepanenko' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Vasilisa+Stepanenko+pulitzer+public+service' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Vasilisa+Stepanenko+pulitzer+public+service' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Vasilisa+Stepanenko+pulitzer+public+service' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Wendell Pritchett::president_university_pennsylvania <button class='copy-btn' data-id='Wendell Pritchett::president_university_pennsylvania' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Wendell_Pritchett' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Wendell+Pritchett+president+university+pennsylvania' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Wendell+Pritchett+president+university+pennsylvania' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Wendell+Pritchett+president+university+pennsylvania' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>William Snyder::pulitzer_photography <button class='copy-btn' data-id='William Snyder::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/William_Snyder_(photojournalist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+William+Snyder+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+William+Snyder+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+William+Snyder+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Motoko Rich::pulitzer_reporting          <button class='copy-btn' data-id='Motoko Rich::pulitzer_reporting         ' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Motoko_Rich' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Motoko+Rich+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Motoko+Rich+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Motoko+Rich+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>William E. Snyder::pulitzer_photography          <button class='copy-btn' data-id='William E. Snyder::pulitzer_photography         ' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/William_Snyder_(photojournalist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+William+E.+Snyder+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+William+E.+Snyder+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+William+E.+Snyder+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Michael Moss::pulitzer_reporting <button class='copy-btn' data-id='Michael Moss::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Michael_Moss' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Michael+Moss+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Michael+Moss+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Michael+Moss+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Rick Cheeseman::chief_naval_personnel <button class='copy-btn' data-id='Rick Cheeseman::chief_naval_personnel' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Richard_Cheeseman_Jr.' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Rick+Cheeseman+chief+naval+personnel' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Rick+Cheeseman+chief+naval+personnel' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Rick+Cheeseman+chief+naval+personnel' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Robert B. Anderson::secretary_navy <button class='copy-btn' data-id='Robert B. Anderson::secretary_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Robert_B._Anderson' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Robert+B.+Anderson+secretary+navy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Robert+B.+Anderson+secretary+navy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Robert+B.+Anderson+secretary+navy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Bill Dietrich::pulitzer_editorial_writing <button class='copy-btn' data-id='Bill Dietrich::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/William_Dietrich_(novelist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Bill+Dietrich+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Bill+Dietrich+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Bill+Dietrich+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Bill Dietrich::pulitzer_reporting <button class='copy-btn' data-id='Bill Dietrich::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/William_Dietrich_(novelist)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Bill+Dietrich+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Bill+Dietrich+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Bill+Dietrich+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Charles McGrath::pulitzer_reporting <button class='copy-btn' data-id='Charles McGrath::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Charles_McGrath_(critic)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Charles+McGrath+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Charles+McGrath+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Charles+McGrath+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Eric Nalder::pulitzer_editorial_writing <button class='copy-btn' data-id='Eric Nalder::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Eric_Nalder' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Eric+Nalder+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Eric+Nalder+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Eric+Nalder+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Eric Nalder::pulitzer_reporting <button class='copy-btn' data-id='Eric Nalder::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Eric_Nalder' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Eric+Nalder+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Eric+Nalder+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Eric+Nalder+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>James M. Honea::master_chief_petty_officer_navy <button class='copy-btn' data-id='James M. Honea::master_chief_petty_officer_navy' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/James_Honea' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+James+M.+Honea+master+chief+petty+officer+navy' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+James+M.+Honea+master+chief+petty+officer+navy' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+James+M.+Honea+master+chief+petty+officer+navy' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>John Kaplan::pulitzer_photography <button class='copy-btn' data-id='John Kaplan::pulitzer_photography' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/John_Kaplan_(photographer)' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+John+Kaplan+pulitzer+photography' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+John+Kaplan+pulitzer+photography' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+John+Kaplan+pulitzer+photography' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Mark Schlabach::pulitzer_investigative_reporting <button class='copy-btn' data-id='Mark Schlabach::pulitzer_investigative_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Mark_Schlabach' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Mark+Schlabach+pulitzer+investigative+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Mark+Schlabach+pulitzer+investigative+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Mark+Schlabach+pulitzer+investigative+reporting' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Motoko Rich::pulitzer_editorial_writing \t <button class='copy-btn' data-id='Motoko Rich::pulitzer_editorial_writing \t' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Motoko_Rich' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Motoko+Rich+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Motoko+Rich+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Motoko+Rich+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Caroline Kitchener::pulitzer_editorial_writing <button class='copy-btn' data-id='Caroline Kitchener::pulitzer_editorial_writing' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Caroline_Kitchener' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Caroline+Kitchener+pulitzer+editorial+writing' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Caroline+Kitchener+pulitzer+editorial+writing' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Caroline+Kitchener+pulitzer+editorial+writing' target='_blank'>father</a></td>
+    </tr>
+    <tr>
+      <td>Caroline Kitchener::pulitzer_reporting <button class='copy-btn' data-id='Caroline Kitchener::pulitzer_reporting' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>None</td>
+      <td><a href='https://en.wikipedia.org/wiki/Caroline_Kitchener' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Caroline+Kitchener+pulitzer+reporting' target='_blank'>bio</a></td>
+      <td><a href='https://www.google.com/search?q=obituary+Caroline+Kitchener+pulitzer+reporting' target='_blank'>obit</a></td>
+      <td><a href='https://www.google.com/search?q=father+Caroline+Kitchener+pulitzer+reporting' target='_blank'>father</a></td>
+    </tr>
+  </tbody>
+</table>
+  <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+  <script src='https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js'></script>
+  <script>
+    $(document).ready(function(){
+      if ($('#dataTable').length) $('#dataTable').DataTable({ paging:false });
+      $(document).on('click','.copy-btn',function(){ navigator.clipboard.writeText($(this).data('id')); });
+    });
+  </script>
+</body>
+</html>
