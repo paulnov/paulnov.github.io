@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Missing father names - Y</title>
+  <link rel='stylesheet' href='https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css'>
+  <style>
+    :root { --border:#d0d7de; --bg-btn:#f6f8fa; }
+    body { font-family:system-ui,-apple-system,sans-serif; margin:2rem; color:#24292f; }
+    h1 { font-weight:500; font-size:1.5rem; }
+    table.dataTable { font-size:0.875rem; width:100%; border-collapse:collapse; }
+    table.dataTable th, table.dataTable td { padding:0.35rem 0.5rem; }
+    .copy-btn { border:1px solid var(--border); background:var(--bg-btn); border-radius:4px; padding:2px; cursor:pointer; vertical-align:middle; }
+    .copy-btn:hover { background:#eaeef2; }
+    .copy-icon { pointer-events:none; }
+  </style>
+</head>
+<body>
+  <h1>Missing father names - Y</h1>
+  <p>Elites missing father name (IDs starting with 'Y')</p>
+  <table id="dataTable" class="display">
+  <thead>
+    <tr style="text-align: right;">
+      <th>elite_id</th>
+      <th>wr_event_year</th>
+      <th>wiki_page</th>
+      <th>google_biography</th>
+      <th>google_obituary</th>
+      <th>google_father</th>
+      <th>prabook</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Youn Yuh-jung::oscar_supporting_actress  (1947-None)<button class='copy-btn' data-id='Youn Yuh-jung::oscar_supporting_actress' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>NaN</td>
+      <td><a href='https://en.wikipedia.org/wiki/Youn_Yuh-jung' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Youn+Yuh-jung+oscar+supporting+actress' target='_blank'>bio</a></td>
+      <td></td>
+      <td><a href='https://www.google.com/search?q=father+Youn+Yuh-jung+oscar+supporting+actress' target='_blank'>father</a></td>
+      <td><a href='https://www.google.com/search?q=prabook+Youn+Yuh-jung+oscar+supporting+actress' target='_blank'>prabook</a></td>
+    </tr>
+    <tr>
+      <td>Yvan Cournoyer::nhl_hall_of_fame  (1943-None)<button class='copy-btn' data-id='Yvan Cournoyer::nhl_hall_of_fame' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>1982.0</td>
+      <td><a href='https://en.wikipedia.org/wiki/Yvan_Cournoyer' target='_blank'>page</a></td>
+      <td><a href='https://www.google.com/search?q=biography+Yvan+Cournoyer+nhl+hall+of+fame' target='_blank'>bio</a></td>
+      <td></td>
+      <td><a href='https://www.google.com/search?q=father+Yvan+Cournoyer+nhl+hall+of+fame' target='_blank'>father</a></td>
+      <td><a href='https://www.google.com/search?q=prabook+Yvan+Cournoyer+nhl+hall+of+fame' target='_blank'>prabook</a></td>
+    </tr>
+    <tr>
+      <td>Yolanda Griffith::nba_hall_of_fame_players  (1970-None)<button class='copy-btn' data-id='Yolanda Griffith::nba_hall_of_fame_players' title='Copy ID'><svg class='copy-icon' viewBox='0 0 16 16' width='14' height='14' aria-hidden='true'><rect x='4' y='2' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect><rect x='2' y='4' width='10' height='12' rx='2' ry='2' fill='none' stroke='currentColor' stroke-width='2'></rect></svg></button></td>
+      <td>2021.0</td>
+      <td></td>
+      <td><a href='https://www.google.com/search?q=biography+Yolanda+Griffith+nba+hall+of+fame+players' target='_blank'>bio</a></td>
+      <td></td>
+      <td><a href='https://www.google.com/search?q=father+Yolanda+Griffith+nba+hall+of+fame+players' target='_blank'>father</a></td>
+      <td><a href='https://www.google.com/search?q=prabook+Yolanda+Griffith+nba+hall+of+fame+players' target='_blank'>prabook</a></td>
+    </tr>
+  </tbody>
+</table>
+  <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+  <script src='https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js'></script>
+  <script>
+    $(document).ready(function(){
+      if ($('#dataTable').length) $('#dataTable').DataTable({ paging:false });
+      $(document).on('click','.copy-btn',function(){ navigator.clipboard.writeText($(this).data('id')); });
+    });
+  </script>
+</body>
+</html>

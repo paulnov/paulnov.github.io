@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Missing father names - X</title>
+  <link rel='stylesheet' href='https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css'>
+  <style>
+    :root { --border:#d0d7de; --bg-btn:#f6f8fa; }
+    body { font-family:system-ui,-apple-system,sans-serif; margin:2rem; color:#24292f; }
+    h1 { font-weight:500; font-size:1.5rem; }
+    table.dataTable { font-size:0.875rem; width:100%; border-collapse:collapse; }
+    table.dataTable th, table.dataTable td { padding:0.35rem 0.5rem; }
+    .copy-btn { border:1px solid var(--border); background:var(--bg-btn); border-radius:4px; padding:2px; cursor:pointer; vertical-align:middle; }
+    .copy-btn:hover { background:#eaeef2; }
+    .copy-icon { pointer-events:none; }
+  </style>
+</head>
+<body>
+  <h1>Missing father names - X</h1>
+  <p>Elites missing father name (IDs starting with 'X')</p>
+  <p><em>No rows found – looks like nothing is missing here!</em></p>
+  <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+  <script src='https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js'></script>
+  <script>
+    $(document).ready(function(){
+      if ($('#dataTable').length) $('#dataTable').DataTable({ paging:false });
+      $(document).on('click','.copy-btn',function(){ navigator.clipboard.writeText($(this).data('id')); });
+    });
+  </script>
+</body>
+</html>
