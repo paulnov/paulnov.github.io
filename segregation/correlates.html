@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Segregation Correlates — 2×2</title>
+  <style>
+    :root{ --gap:14px; --bg:#0b0b0c; --fg:#e7e7ea; --muted:#9aa0a6; --card:#151517; --border:#26262a; --radius:14px; }
+    html,body{height:100%; margin:0; background:var(--bg); color:var(--fg); font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif}
+    .wrap{max-width:1100px; margin:32px auto; padding:0 16px}
+    h1{font-size:18px; margin:0 0 10px}
+    .controls{display:flex; align-items:center; gap:10px; margin:8px 0 16px}
+    .controls label{font-size:12px; color:var(--muted)}
+    select{appearance:none; background:var(--card); color:var(--fg); border:1px solid var(--border); border-radius:10px; padding:8px 12px; min-width:280px}
+    .note{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace; font-size:11px; color:var(--muted)}
+    .grid{display:grid; grid-template-columns:1fr 1fr; gap:var(--gap)}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    .tile{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden}
+    .tile header{padding:10px 12px; border-bottom:1px solid var(--border); font-weight:600; font-size:13px}
+    .imgbox{position:relative; width:100%; aspect-ratio: 16/10; display:flex; align-items:center; justify-content:center; background:#0f0f11}
+    .imgbox img{max-width:100%; max-height:100%; object-fit:contain}
+    .path{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace; font-size:11px; color:var(--muted); padding:8px 12px; border-top:1px dashed var(--border); white-space:pre-wrap}
+    .ok{color:#81c995} .err{color:#ef6c6c}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Correlates of Segregation — 2×2</h1>
+    <span class="note"> The plots show bivariate correlations between town/city characteristics and two measures of Scheduled Caste and Muslim segregation (Dissimilarity and Isolation). The sample is a set of about 3500 towns and cities in India. Each point shows the mean segregation measure of about 180 cities/towns, grouped by the value on the X axis. Choose different X variables in the dropdown to see different outcomes.</span>
+
+    <div class="controls">
+      <label for="lhs">Left‑hand variable</label>
+      <select id="lhs"></select>
+      <span class="note">stem: <code id="lhs-stem"></code></span>
+    </div>
+
+    <div class="grid" id="grid">
+      <section class="tile">
+        <header>Dissimilarity × Muslim</header>
+        <div class="imgbox"><img data-seg-stem="bin_dissim_muslim" alt="Dissimilarity × Muslim"></div>
+        <div class="path"><span class="ok" data-status></span> <code data-url></code></div>
+      </section>
+      <section class="tile">
+        <header>Dissimilarity × SC</header>
+        <div class="imgbox"><img data-seg-stem="bin_dissim_sc" alt="Dissimilarity × SC"></div>
+        <div class="path"><span class="ok" data-status></span> <code data-url></code></div>
+      </section>
+      <section class="tile">
+        <header>Isolation × Muslim</header>
+        <div class="imgbox"><img data-seg-stem="bin_iso_muslim" alt="Isolation × Muslim"></div>
+        <div class="path"><span class="ok" data-status></span> <code data-url></code></div>
+      </section>
+      <section class="tile">
+        <header>Isolation × SC</header>
+        <div class="imgbox"><img data-seg-stem="bin_iso_sc" alt="Isolation × SC"></div>
+        <div class="path"><span class="ok" data-status></span> <code data-url></code></div>
+      </section>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const IMG_BASE = './';
+
+    // Dropdown options. Extend as needed. "stem" must match your filename stem.
+  const LHS_CHOICES = [
+    { key:'ln_cons_pc',     stem:'ln_cons_pc',       label:'Log Per Capita Consumption' },
+    { key:'ed_yrs',     stem:'ed_yrs',       label:'Mean Years of Education' },
+    { key:'city_origin_year',     stem:'city_origin_year',       label:'City Origin Year' },
+    { key:'log_area_pc11',     stem:'log_area_pc11',       label:'City Surface Area' },
+    { key:'ln_city_pop',    stem:'ln_city_pop',      label:'Log City Population' },
+    { key:'ln_growth',      stem:'ln_growth',        label:'Log City Growth 1991–2011' },
+    { key:'muslim_pop_share', stem:'muslim_pop_share', label:'Muslim Share' },
+    { key:'sc_pop_share',   stem:'sc_pop_share',     label:'SC Share' },
+    { key:'city_origin_year', stem:'city_origin_year', label:'City Origin Year' },
+    { key:'p25',            stem:'p25',              label:'Upward Mobility (p25)' },
+    { key:'event_count',      stem:'event_count',        label:'Instances of Religious Violence' },
+    { key:'muslim_job_share',     stem:'muslim_job_share',       label:'Muslim Job Share' },
+    { key:'sc_job_share',     stem:'sc_job_share',       label:'SC Job Share' },
+    { key:'town_cons_gini', stem:'town_cons_gini',   label:'Town Consumption Gini' },
+    { key:'rural_land_gini', stem:'rural_land_gini', label:'Rural District Land Gini' }
+  ];
+
+  const select = document.getElementById('lhs');
+  const lhsStemEl = document.getElementById('lhs-stem');
+
+  function populateSelect(){
+    const savedKey = localStorage.getItem('seg_lhs_key');
+    LHS_CHOICES.forEach(({key, stem, label}) => {
+      const opt = document.createElement('option');
+      opt.value = key; opt.textContent = `${label}`; opt.dataset.stem = stem;
+      if(savedKey ? key === savedKey : key === 'ln_cons_pc') opt.selected = true;
+      select.appendChild(opt);
+    });
+  }
+
+  function keyToStem(key){
+    const found = LHS_CHOICES.find(d => d.key === key);
+    return found ? found.stem : key; // fallback
+  }
+
+  function buildSrc(segStem, lhsStem){ return IMG_BASE + segStem + '_' + lhsStem + '.png'; }
+  function absUrl(rel){ try { return new URL(rel, window.location.href).href; } catch(e){ return rel; } }
+
+  function renderAll(){
+    const key = select.value;
+    const lhsStem = keyToStem(key);
+    lhsStemEl.textContent = lhsStem;
+    localStorage.setItem('seg_lhs_key', key);
+
+    document.querySelectorAll('.tile').forEach(tile => {
+      const img = tile.querySelector('img[data-seg-stem]');
+      const segStem = img.getAttribute('data-seg-stem');
+      const src = buildSrc(segStem, lhsStem);
+      const urlEl = tile.querySelector('[data-url]');
+      const statusEl = tile.querySelector('[data-status]');
+
+      // set handlers per render to avoid duplicates
+      img.onload = function(){ statusEl.textContent = 'loaded'; statusEl.className = 'ok'; };
+      img.onerror = function(){ statusEl.textContent = 'missing'; statusEl.className = 'err'; };
+
+      img.src = src;
+      urlEl.textContent = absUrl(src);
+    });
+  }
+
+  populateSelect();
+  renderAll();
+  select.addEventListener('change', renderAll);
+})();
+</script>
+</body>
+</html>
