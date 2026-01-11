@@ -1,0 +1,2299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pressure Mine</title>
+  <style>
+    :root {
+      --bg: #f5f0e6;
+      --panel: #f9f6ef;
+      --ink: #1c1b18;
+      --accent: #0f4c5c;
+      --accent-2: #b23a48;
+      --cell: #e6dfcf;
+      --cell-revealed: #fdfbf6;
+      --cell-border: #c9c1b2;
+      --shadow: rgba(28, 27, 24, 0.2);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(180, 205, 190, 0.25), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(178, 58, 72, 0.15), transparent 45%),
+        linear-gradient(130deg, #faf7f1, #f1e8d7 60%, #efe2cc);
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      padding: 16px;
+    }
+
+    .board-wrap {
+      width: min(96vw, 860px);
+      background: var(--panel);
+      border-radius: 18px;
+      box-shadow: 0 18px 40px var(--shadow);
+      padding: 18px 18px 22px;
+      position: relative;
+      overflow: hidden;
+      filter: saturate(var(--oxygen-sat, 1));
+      transition: filter 0.2s ease;
+    }
+
+    .board-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -120px;
+      background: conic-gradient(from 90deg at 50% 50%, rgba(15, 76, 92, 0.15), transparent 35%, rgba(178, 58, 72, 0.12), transparent 60%);
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    .board-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 35%, rgba(0, 0, 0, 0) 18%, rgba(0, 0, 0, 0.98) 100%);
+      opacity: var(--oxygen-dim, 0);
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 2;
+    }
+
+    /* flare background removed */
+
+    .board-wrap.pulse-active {
+      filter: saturate(1) brightness(1.12);
+      transition: filter 0.2s ease-out;
+    }
+
+    .board-wrap.pulse-active::after {
+      opacity: 0.2;
+      transition: opacity 0.2s ease-out;
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(22px, 4vw, 32px);
+      letter-spacing: 0.02em;
+    }
+
+    .stats {
+      display: flex;
+      gap: 16px;
+      font-weight: 600;
+      flex-wrap: wrap;
+    }
+
+    .stats > span {
+      background: #f1eadc;
+      border-radius: 999px;
+      padding: 6px 12px;
+      border: 1px solid rgba(28, 27, 24, 0.08);
+    }
+
+    .stats > span.shield-icons {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    .meter {
+      display: grid;
+      gap: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meter-track {
+      width: 120px;
+      height: 10px;
+      border-radius: 999px;
+      background: #efe6d7;
+      border: 1px solid rgba(28, 27, 24, 0.1);
+      position: relative;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #0f4c5c, #356859 60%, #7ca36f);
+      transition: width 0.25s ease;
+    }
+
+    .meter-bubbles {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      top: -22px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .meter-bubbles.paused .meter-bubble {
+      animation-play-state: paused;
+      opacity: 0;
+    }
+
+    .meter-bubble {
+      position: absolute;
+      bottom: 0;
+      width: 6px;
+      height: 6px;
+      display: block;
+      border-radius: 50%;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      min-width: 0;
+      min-height: 0;
+      font-size: 0;
+      line-height: 0;
+      background: rgba(160, 215, 255, 0.8);
+      border: 1.5px solid rgba(120, 210, 235, 0.95);
+      box-shadow: 0 0 6px rgba(120, 210, 235, 0.7);
+      animation: bubble-rise 2.2s linear infinite;
+      animation-fill-mode: both;
+    }
+
+    .meter-bubble:nth-child(1) { left: 6%; animation-delay: -0.6s; background: radial-gradient(circle at 30% 30%, rgba(220, 245, 255, 0.95), rgba(110, 200, 230, 0.9)); }
+    .meter-bubble:nth-child(2) { left: 19%; animation-delay: -1.4s; background: radial-gradient(circle at 30% 30%, rgba(220, 245, 255, 0.95), rgba(120, 210, 240, 0.9)); }
+    .meter-bubble:nth-child(3) { left: 33%; animation-delay: -0.2s; background: radial-gradient(circle at 30% 30%, rgba(220, 245, 255, 0.95), rgba(90, 190, 225, 0.9)); }
+    .meter-bubble:nth-child(4) { left: 52%; animation-delay: -1.8s; background: radial-gradient(circle at 30% 30%, rgba(220, 245, 255, 0.95), rgba(130, 220, 245, 0.9)); }
+    .meter-bubble:nth-child(5) { left: 71%; animation-delay: -0.9s; background: radial-gradient(circle at 30% 30%, rgba(220, 245, 255, 0.95), rgba(100, 205, 235, 0.9)); }
+    .meter-bubble:nth-child(6) { left: 86%; animation-delay: -1.1s; background: radial-gradient(circle at 30% 30%, rgba(220, 245, 255, 0.95), rgba(140, 230, 250, 0.9)); }
+
+    @keyframes bubble-rise {
+      0% { transform: translateY(0) scale(0.9); opacity: 0; }
+      10% { opacity: 0.75; }
+      100% { transform: translateY(-42px) scale(1.2); opacity: 0; }
+    }
+
+    .controls {
+      position: relative;
+      z-index: 1;
+      margin-top: 8px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .test-controls {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: none;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .test-controls button {
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 10px;
+      background: #1c1b18;
+      box-shadow: none;
+    }
+
+    button {
+      border: none;
+      background: var(--accent);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 16px rgba(15, 76, 92, 0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 20px rgba(15, 76, 92, 0.3);
+    }
+
+    .note {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .layout {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-top: 18px;
+    }
+
+    .play-area {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .sidebar {
+      width: min(28vw, 260px);
+      display: grid;
+      gap: 12px;
+    }
+
+    .card {
+      background: #f1eadc;
+      border-radius: 16px;
+      padding: 12px 14px;
+      border: 1px solid rgba(28, 27, 24, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .score-card {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .score-details {
+      font-size: 12px;
+      opacity: 0.75;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: #efe6d7;
+      border: 1px solid rgba(28, 27, 24, 0.1);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #b23a48, #d27a4a);
+    }
+
+    .shield-icons {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+      font-size: 16px;
+      line-height: 1;
+      min-height: 28px;
+    }
+
+    .status {
+      font-weight: 600;
+      display: grid;
+      gap: 4px;
+    }
+
+    .status-line {
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .status-line:nth-child(1) {
+      color: #1c1b18;
+      opacity: 1;
+    }
+
+    .status-line:nth-child(2) {
+      opacity: 0.6;
+    }
+
+    .status-line:nth-child(3) {
+      opacity: 0.35;
+    }
+
+    .legend {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+      font-size: 12px;
+      opacity: 0.85;
+      display: grid;
+      gap: 6px;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .highscores {
+      font-size: 12px;
+      text-align: right;
+      opacity: 0.8;
+      min-width: 160px;
+    }
+
+    .highscores strong {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .howto-button {
+      margin-top: 10px;
+      font-size: 12px;
+      padding: 8px 12px;
+      background: var(--accent-2);
+      box-shadow: 0 8px 16px rgba(178, 58, 72, 0.25);
+    }
+
+    .howto-button:hover {
+      box-shadow: 0 12px 20px rgba(178, 58, 72, 0.3);
+    }
+
+    .howto-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 18, 20, 0.48);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 20;
+    }
+
+    .howto-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .howto-panel {
+      width: min(92vw, 640px);
+      background: var(--panel);
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(28, 27, 24, 0.28);
+      padding: 22px 24px;
+      position: relative;
+      transform: translateY(12px) scale(0.96);
+      opacity: 0;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .howto-overlay.open .howto-panel {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .howto-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border: none;
+      background: #efe6d7;
+      color: #1c1b18;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border-radius: 999px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: none;
+    }
+
+    .howto-title {
+      margin: 0 0 6px;
+      font-size: clamp(20px, 3vw, 26px);
+    }
+
+    .howto-lead {
+      margin: 0 0 12px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .howto-section {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 0;
+      border-top: 1px dashed rgba(28, 27, 24, 0.12);
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .howto-section:first-of-type {
+      border-top: none;
+    }
+
+    .howto-overlay.open .howto-section {
+      animation: howto-rise 0.35s ease forwards;
+    }
+
+    .howto-overlay.open .howto-section:nth-of-type(2) {
+      animation-delay: 0.05s;
+    }
+
+    .howto-overlay.open .howto-section:nth-of-type(3) {
+      animation-delay: 0.1s;
+    }
+
+    .howto-overlay.open .howto-section:nth-of-type(4) {
+      animation-delay: 0.15s;
+    }
+
+    @keyframes howto-rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .howto-text h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .howto-text p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .howto-demo {
+      position: relative;
+      display: inline-block;
+    }
+
+    .howto-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 26px);
+      gap: 4px;
+    }
+
+    .howto-tile {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: var(--cell);
+      border: 1px solid var(--cell-border);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: #1c1b18;
+    }
+
+    .howto-tile.revealed {
+      background: var(--cell-revealed);
+      box-shadow: inset 0 0 0 2px rgba(28, 27, 24, 0.06);
+    }
+
+    .howto-tile.flagged {
+      background: #b23a48;
+      color: #fdf4f4;
+    }
+
+    .howto-tile.number-1 { color: #0f4c5c; }
+    .howto-tile.number-2 { color: #356859; }
+
+    .howto-tile.cleared {
+      background: #fdfbf6;
+      color: #1c1b18;
+      box-shadow: inset 0 0 0 1px rgba(28, 27, 24, 0.12);
+    }
+
+    .howto-tile.focus {
+      outline: 2px solid rgba(178, 58, 72, 0.5);
+      outline-offset: 2px;
+    }
+
+    .howto-arrow-layer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 86px;
+      height: 86px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .howto-shortcut {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 76, 92, 0.1);
+      color: #1c1b18;
+      margin-top: 8px;
+    }
+
+    .howto-actions {
+      margin-top: 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .howto-close-btn {
+      background: var(--accent);
+    }
+
+    .howto-meter {
+      display: grid;
+      gap: 6px;
+      justify-items: start;
+    }
+
+    .howto-meter-track {
+      width: 140px;
+      height: 12px;
+      border-radius: 999px;
+      background: #efe6d7;
+      border: 1px solid rgba(28, 27, 24, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .howto-meter-fill {
+      height: 100%;
+      width: 70%;
+      background: linear-gradient(90deg, #0f4c5c, #356859 60%, #7ca36f);
+    }
+
+    .howto-meter-bubbles {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      top: -18px;
+      pointer-events: none;
+    }
+
+    .howto-meter-bubble {
+      position: absolute;
+      bottom: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(160, 215, 255, 0.8);
+      box-shadow: 0 0 6px rgba(160, 215, 255, 0.6);
+      animation: bubble-rise 2.2s linear infinite;
+    }
+
+    .howto-meter-bubble:nth-child(1) { left: 15%; animation-delay: 0.2s; }
+    .howto-meter-bubble:nth-child(2) { left: 50%; animation-delay: 0.8s; }
+    .howto-meter-bubble:nth-child(3) { left: 80%; animation-delay: 1.4s; }
+
+    @media (max-width: 720px) {
+      .howto-section {
+        grid-template-columns: 1fr;
+      }
+
+      .howto-mini-grid {
+        justify-content: start;
+      }
+    }
+
+    .new-record {
+      color: #b23a48;
+      font-weight: 700;
+    }
+
+    .legend strong {
+      font-weight: 700;
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 22px;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 0 6px;
+      border: 1px solid rgba(28, 27, 24, 0.08);
+      font-size: 12px;
+    }
+
+    .legend-icon.shield {
+      background: #dbe8e1;
+      color: #0f4c5c;
+    }
+
+    .legend-icon.tank {
+      background: #d7ecf2;
+      color: #0f4c5c;
+    }
+
+    .legend-icon.step-mine {
+      background: #b23a48;
+      color: #fdf4f4;
+    }
+
+    .legend-icon.wrong-flag {
+      background: #fdfbf6;
+      color: #1c1b18;
+    }
+
+    .legend-icon.exploded {
+      background: #5a1f1a;
+      color: #ffd8b1;
+    }
+
+    .legend-icon.flagged {
+      background: #b23a48;
+      color: #fdf4f4;
+    }
+
+    .shake {
+      animation: shake 0.2s linear;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-2px, 1px); }
+      40% { transform: translate(2px, -1px); }
+      60% { transform: translate(-1px, -2px); }
+      80% { transform: translate(1px, 2px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(16, minmax(16px, 1fr));
+      gap: 4px;
+      user-select: none;
+    }
+
+    .cell {
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      background: var(--cell);
+      border: 1px solid var(--cell-border);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: clamp(10px, 1.6vw, 14px);
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cell:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 10px rgba(28, 27, 24, 0.18);
+    }
+
+    .cell.revealed {
+      background: var(--cell-revealed);
+      cursor: default;
+      box-shadow: inset 0 0 0 2px rgba(28, 27, 24, 0.06);
+      transform: none;
+    }
+
+    .cell.mine {
+      background: #351f1b;
+      color: #fce8d5;
+    }
+
+    .cell.exploded-mine {
+      background: #5a1f1a;
+      color: #ffd8b1;
+      box-shadow: inset 0 0 0 2px rgba(255, 200, 160, 0.2);
+    }
+
+    .cell.peek-mine {
+      background: #351f1b;
+      color: #fce8d5;
+      box-shadow: inset 0 0 0 2px rgba(252, 232, 213, 0.2);
+    }
+
+    .cell.shield {
+      background: #dbe8e1;
+      color: #0f4c5c;
+    }
+
+    .cell.tank {
+      background: #d7ecf2;
+      color: #0f6fd6;
+      font-size: clamp(12px, 2vw, 16px);
+      text-shadow: 0 0 6px rgba(15, 111, 214, 0.4);
+    }
+
+    .cell.flare {
+      background: #f3e2c9;
+      color: #b04a00;
+    }
+
+    .cell.pulse {
+      background: #d8ecff;
+      color: #0f6fd6;
+    }
+
+    .flare-rocket {
+      position: absolute;
+      width: 28px;
+      height: 60px;
+      pointer-events: none;
+      z-index: 3;
+      transform: translate(-50%, 0);
+      opacity: 1;
+      transition: transform 1.1s ease-in, opacity 1.1s ease-in;
+    }
+
+    .flare-rocket svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+    }
+
+    .cell.powerup-ready::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 12px;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.9), rgba(80, 180, 255, 0.9), rgba(255, 255, 255, 0.9));
+      z-index: 0;
+      animation: pulse-ring 1.2s ease-in-out infinite;
+    }
+
+    .cell.powerup-ready > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes pulse-ring {
+      0% { opacity: 0.3; transform: scale(0.98); }
+      50% { opacity: 0.8; transform: scale(1.02); }
+      100% { opacity: 0.3; transform: scale(0.98); }
+    }
+
+    .cell.pulse-row {
+      border-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6);
+      transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+    }
+
+    .grid.flare-active .cell {
+      animation: flare-cell 1s ease-out;
+    }
+
+    .cell.flare-mine::after,
+    .cell.pulse-mine::after,
+    .cell.test-mine::after {
+      content: "";
+      position: absolute;
+      inset: 22%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 70, 70, 0.95), rgba(255, 70, 70, 0.2));
+      opacity: 0;
+      animation: mine-glow 3s ease-out forwards;
+    }
+
+    .cell.pulse-mine::after {
+      animation-duration: 1.5s;
+    }
+
+    .cell.test-mine::after {
+      opacity: 1;
+      animation: none;
+    }
+
+    @keyframes mine-glow {
+      0% { opacity: 1; transform: scale(0.9); }
+      100% { opacity: 0; transform: scale(1.1); }
+    }
+
+    @keyframes flare-cell {
+      0% {
+        box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0.95);
+      }
+      100% {
+        box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0);
+      }
+    }
+
+    .cell.flagged {
+      background: #b23a48;
+      color: #fdf4f4;
+    }
+
+    .cell.wrong-flag {
+      background: #6d2e46;
+      color: #f7d9df;
+    }
+
+    .cell.safe-hit {
+      background: #b23a48;
+      color: #fdf4f4;
+    }
+
+    .cell.stepped-mine {
+      background: #b23a48;
+      color: #fdf4f4;
+    }
+
+    .cell.cleared-flag {
+      background: #fdfbf6;
+      color: #1c1b18;
+      box-shadow: inset 0 0 0 1px rgba(28, 27, 24, 0.08);
+    }
+
+    @media (max-width: 720px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .grid {
+        grid-template-columns: repeat(12, minmax(16px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="board-wrap">
+    <div id="test-controls" class="test-controls">
+      <button id="test-flare">Flare</button>
+      <button id="test-pulse">Pulse</button>
+      <button id="test-toggle">Reveal Mines</button>
+    </div>
+    <header>
+      <h1>Pressure Mine</h1>
+    </header>
+    <div class="controls">
+      <button id="restart">New mine</button>
+      <div class="stats">
+        <span id="mine-count">Mines: 0</span>
+        <span id="flag-count">Flags: 0</span>
+        <div class="meter">
+          <span id="stability-label">Oxygen</span>
+          <div class="meter-track" aria-hidden="true">
+            <div id="stability-bar" class="meter-fill"></div>
+            <div class="meter-bubbles" aria-hidden="true">
+              <span class="meter-bubble"></span>
+              <span class="meter-bubble"></span>
+              <span class="meter-bubble"></span>
+              <span class="meter-bubble"></span>
+              <span class="meter-bubble"></span>
+              <span class="meter-bubble"></span>
+            </div>
+          </div>
+        </div>
+        <span id="timer">Time: 0s</span>
+        <span id="shield-icons" class="shield-icons" aria-label="Shields"></span>
+      </div>
+    </div>
+    <div class="layout">
+      <div class="play-area">
+        <section id="grid" class="grid" aria-label="Minesweeper grid"></section>
+      </div>
+      <aside class="sidebar" aria-label="Game feedback">
+        <div class="card">
+          <h2 id="report-title">Progress</h2>
+          <div id="score-card" class="score-card">0%</div>
+          <div id="score-details" class="score-details">Safe tiles cleared: 0%</div>
+          <div class="progress-track" aria-hidden="true">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+        </div>
+        <div id="milestone-banner" class="card score-card" style="display: none;">25% Complete</div>
+        <div class="card">
+          <h2>Result</h2>
+          <div id="result-report" class="status">No result yet.</div>
+        </div>
+        <div class="card">
+          <h2>Status</h2>
+          <div id="status" class="status">
+            <div class="status-line"></div>
+            <div class="status-line"></div>
+            <div class="status-line"></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <div class="footer-row">
+      <div class="legend">
+        <strong>Legend:</strong>
+        <div class="legend-row">
+          <span class="legend-item"><span class="legend-icon flagged">⚑</span> Flag</span>
+          <span class="legend-item"><span class="legend-icon wrong-flag">-</span> Wrong flag cleared by blast</span>
+        </div>
+        <div class="legend-row">
+          <span class="legend-item"><span class="legend-icon step-mine">X</span> Stepped-on mine (counts as a flag)</span>
+          <span class="legend-item"><span class="legend-icon exploded">✹</span> Exploded mine (no further damage)</span>
+        </div>
+      </div>
+      <div class="highscores">
+        <strong>High Scores</strong>
+        <div id="highscore-time">Survival: 0s</div>
+        <div id="highscore-tiles">Tiles cleared: 0%</div>
+        <button id="howto-button" class="howto-button">How to play</button>
+      </div>
+    </div>
+    <div id="howto-overlay" class="howto-overlay" aria-hidden="true">
+      <div class="howto-panel" role="dialog" aria-modal="true" aria-labelledby="howto-title">
+        <button id="howto-close" class="howto-close" aria-label="Close">×</button>
+        <h2 id="howto-title" class="howto-title">How to Play</h2>
+        <p class="howto-lead">Clear the safe tiles, manage oxygen, and use flags to avoid mines.</p>
+        <div class="howto-content">
+          <div class="howto-section">
+            <div class="howto-demo">
+              <div class="howto-mini-grid" aria-hidden="true">
+                <span class="howto-tile"></span>
+                <span class="howto-tile revealed number-1">1</span>
+                <span class="howto-tile"></span>
+                <span class="howto-tile revealed number-2">2</span>
+                <span class="howto-tile revealed number-1">1</span>
+                <span class="howto-tile"></span>
+                <span class="howto-tile"></span>
+                <span class="howto-tile revealed"></span>
+                <span class="howto-tile"></span>
+              </div>
+            </div>
+            <div class="howto-text">
+              <h3>Numbers are warnings</h3>
+              <p>A revealed number shows how many mines are touching that tile.</p>
+            </div>
+          </div>
+          <div class="howto-section">
+            <div class="howto-demo">
+              <div class="howto-mini-grid" aria-hidden="true">
+                <span class="howto-tile revealed"></span>
+                <span class="howto-tile flagged focus">⚑</span>
+                <span class="howto-tile revealed"></span>
+                <span class="howto-tile revealed"></span>
+                <span class="howto-tile revealed number-2">2</span>
+                <span class="howto-tile revealed"></span>
+                <span class="howto-tile revealed"></span>
+                <span class="howto-tile flagged focus">⚑</span>
+                <span class="howto-tile revealed"></span>
+              </div>
+              <div class="howto-shortcut">Right-click or Ctrl-click</div>
+            </div>
+            <div class="howto-text">
+              <h3>Plant flags</h3>
+              <p>Right-click or Ctrl-click any hidden tile to drop a flag where you think a mine is.</p>
+            </div>
+          </div>
+          <div class="howto-section">
+            <div class="howto-demo">
+              <div class="howto-mini-grid" aria-hidden="true">
+                <span class="howto-tile flagged">⚑</span>
+                <span class="howto-tile revealed number-2">2</span>
+                <span class="howto-tile flagged">⚑</span>
+                <span class="howto-tile cleared"></span>
+                <span class="howto-tile revealed number-2 focus">2</span>
+                <span class="howto-tile cleared"></span>
+                <span class="howto-tile"></span>
+                <span class="howto-tile cleared"></span>
+                <span class="howto-tile"></span>
+              </div>
+              <svg class="howto-arrow-layer" viewBox="0 0 86 86" aria-hidden="true">
+                <defs>
+                  <marker id="howto-arrowhead" markerWidth="5" markerHeight="5" refX="4.2" refY="2.5" orient="auto">
+                    <path d="M0,0 L5,2.5 L0,5 Z" fill="#b23a48"></path>
+                  </marker>
+                </defs>
+                <line x1="34" y1="43" x2="18" y2="43" stroke="#b23a48" stroke-width="2.2" stroke-linecap="round" marker-end="url(#howto-arrowhead)" />
+                <line x1="52" y1="43" x2="68" y2="43" stroke="#b23a48" stroke-width="2.2" stroke-linecap="round" marker-end="url(#howto-arrowhead)" />
+                <line x1="43" y1="52" x2="43" y2="70" stroke="#b23a48" stroke-width="2.2" stroke-linecap="round" marker-end="url(#howto-arrowhead)" />
+              </svg>
+              <div class="howto-shortcut">Right-click or Ctrl-click the number</div>
+            </div>
+            <div class="howto-text">
+              <h3>Clear tiles around a flagged number</h3>
+              <p>Once the flags around the tile match its number, right-click or Ctrl-click the number to clear the rest of the surrounding tiles. Be careful---this can trigger an explosion if you placed a flag incorrectly!</p>
+            </div>
+          </div>
+          <div class="howto-section">
+            <div class="howto-demo">
+              <div class="howto-meter" aria-hidden="true">
+                <div class="howto-meter-track">
+                  <div class="howto-meter-fill"></div>
+                  <div class="howto-meter-bubbles">
+                    <span class="howto-meter-bubble"></span>
+                    <span class="howto-meter-bubble"></span>
+                    <span class="howto-meter-bubble"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="howto-text">
+              <h3>Don't run out of oxygen!</h3>
+            </div>
+          </div>
+        </div>
+        <div class="howto-actions">
+          <button id="howto-close-btn" class="howto-close-btn">Back to the mines</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const SIZE = 16;
+    const MINES = 40;
+    const SHIELDS_MIN = 3;
+    const SHIELDS_MAX = 6;
+    const PROB_O2_TANK = 0.5;
+    const PROB_FLARE = 0.5;
+    const PROB_PULSE = 0.5;
+
+    const gridEl = document.getElementById("grid");
+    const boardWrapEl = document.querySelector(".board-wrap");
+    const mineCountEl = document.getElementById("mine-count");
+    const flagCountEl = document.getElementById("flag-count");
+    const shieldIconsEl = document.getElementById("shield-icons");
+    const scoreCardEl = document.getElementById("score-card");
+    const scoreDetailsEl = document.getElementById("score-details");
+    const resultReportEl = document.getElementById("result-report");
+    const milestoneBannerEl = document.getElementById("milestone-banner");
+    const progressFillEl = document.getElementById("progress-fill");
+    const reportTitleEl = document.getElementById("report-title");
+    const meterBubblesEl = document.querySelector(".meter-bubbles");
+    const highscoreTimeEl = document.getElementById("highscore-time");
+    const highscoreTilesEl = document.getElementById("highscore-tiles");
+    const stabilityBarEl = document.getElementById("stability-bar");
+    const statusEl = document.getElementById("status");
+    const timerEl = document.getElementById("timer");
+    const restartBtn = document.getElementById("restart");
+    const testControlsEl = document.getElementById("test-controls");
+    const testFlareBtn = document.getElementById("test-flare");
+    const testPulseBtn = document.getElementById("test-pulse");
+    const testToggleBtn = document.getElementById("test-toggle");
+    const howtoButton = document.getElementById("howto-button");
+    const howtoOverlay = document.getElementById("howto-overlay");
+    const howtoClose = document.getElementById("howto-close");
+    const howtoCloseBtn = document.getElementById("howto-close-btn");
+
+    let board = [];
+    let revealedCount = 0;
+    let flags = 0;
+    let shieldsHeld = 0;
+    let minesLeft = MINES;
+    let gameOver = false;
+    let timer = null;
+    let tickTimer = null;
+    let lastTickAt = 0;
+    let time = 0;
+    let stability = 0;
+    const maxStability = 10;
+    const graceDuration = 5;
+    let graceRemaining = 0;
+    let initialized = false;
+    let audioContext = null;
+    let heartbeatAudio = null;
+    let popQueue = 0;
+    let popTimer = null;
+    let nextMilestoneIndex = 0;
+    const milestones = [0.25, 0.5, 0.75];
+    let bestTime = 0;
+    let bestPercent = 0;
+    const statusLines = [];
+    let powerupsPlaced = false;
+    let flareActive = false;
+    let testRevealMines = false;
+
+    const numberColors = {
+      1: "#0f4c5c",
+      2: "#356859",
+      3: "#b23a48",
+      4: "#3a86ff",
+      5: "#6d597a",
+      6: "#6d4c41",
+      7: "#1c1b18",
+      8: "#7f4f24",
+    };
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function ensureAudioContext() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+    }
+
+    function ensureHeartbeatAudio() {
+      if (!heartbeatAudio) {
+        heartbeatAudio = new Audio("hb2.mp3");
+        heartbeatAudio.preload = "auto";
+        heartbeatAudio.loop = true;
+      }
+    }
+
+    function playTick() {
+      if (!heartbeatAudio) return;
+      heartbeatAudio.volume = getHeartbeatVolume();
+      if (heartbeatAudio.paused) {
+        heartbeatAudio.play().catch(() => {});
+      }
+    }
+
+    function playFailureSound() {
+      const audio = new Audio("nuke.mp3");
+      audio.volume = 0.8;
+      audio.play().catch(() => {});
+    }
+
+    function playNoOxygenSound() {
+      const audio = new Audio("no_o2.mp3");
+      audio.volume = 0.1;
+      audio.play().catch(() => {});
+    }
+
+    function playPowerUpSound() {
+      const audio = new Audio("powerup.mp3");
+      audio.volume = 0.7;
+      audio.play().catch(() => {});
+    }
+
+    function playTankSound() {
+      const audio = new Audio("o2_tank.mp3");
+      audio.volume = 0.8;
+      audio.play().catch(() => {});
+    }
+
+    function playFlareSound() {
+      const audio = new Audio("flare.mp3");
+      audio.volume = 0.8;
+      audio.play().catch(() => {});
+    }
+
+    function playSonarSound() {
+      const ping = () => {
+        const audio = new Audio("sonar-ping.mp3");
+        audio.volume = 0.8;
+        audio.play().catch(() => {});
+      };
+      for (let i = 0; i < 5; i += 1) {
+        setTimeout(ping, i * 750);
+      }
+    }
+
+    function playWinSound() {
+      if (!audioContext || audioContext.state !== "running") return;
+      const now = audioContext.currentTime;
+      const tones = [523, 659, 784];
+      tones.forEach((freq, index) => {
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        const start = now + index * 0.12;
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(0.11, start + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.18);
+        osc.start(start);
+        osc.stop(start + 0.2);
+      });
+    }
+
+    function playExplosionSound() {
+      if (!audioContext || audioContext.state !== "running") return;
+      const now = audioContext.currentTime;
+      const noise = audioContext.createBufferSource();
+      const buffer = audioContext.createBuffer(1, audioContext.sampleRate * 0.2, audioContext.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i += 1) {
+        data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
+      }
+      noise.buffer = buffer;
+      const gain = audioContext.createGain();
+      gain.gain.value = 0.2;
+      noise.connect(gain);
+      gain.connect(audioContext.destination);
+      noise.start(now);
+      noise.stop(now + 0.18);
+
+      const boom = audioContext.createOscillator();
+      const boomGain = audioContext.createGain();
+      boom.type = "sine";
+      boom.frequency.value = 90;
+      boom.connect(boomGain);
+      boomGain.connect(audioContext.destination);
+      boomGain.gain.setValueAtTime(0.18, now);
+      boomGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+      boom.start(now);
+      boom.stop(now + 0.26);
+    }
+
+    function playShieldBoomSound() {
+      const audio = new Audio("shield.mp3");
+      audio.volume = 0.7;
+      audio.play().catch(() => {});
+    }
+
+    function playPopSound() {
+      if (!audioContext || audioContext.state !== "running") return;
+      const now = audioContext.currentTime;
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      osc.type = "sine";
+      osc.frequency.value = 520;
+      osc.connect(gain);
+      gain.connect(audioContext.destination);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.04, now + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+      osc.start(now);
+      osc.stop(now + 0.06);
+    }
+
+    function enqueuePop() {
+      popQueue = Math.min(20, popQueue + 1);
+      if (popTimer) return;
+      popTimer = setInterval(() => {
+        if (popQueue <= 0) {
+          clearInterval(popTimer);
+          popTimer = null;
+          return;
+        }
+        playPopSound();
+        popQueue -= 1;
+      }, 40);
+    }
+
+    function startTickLoop() {
+      if (tickTimer || gameOver) return;
+      const schedule = () => {
+        if (gameOver || stability <= 0) {
+          tickTimer = null;
+          return;
+        }
+        const percent = Math.max(0, Math.min(1, stability / maxStability));
+        const urgency = Math.pow(1 - percent, 0.6);
+        const bpm = graceRemaining > 0 ? 60 : 60 + urgency * 180;
+        const intervalMs = 60000 / bpm;
+        tickTimer = setTimeout(() => {
+          const now = performance.now();
+          if (lastTickAt) {
+            const elapsed = (now - lastTickAt) / 1000;
+            if (graceRemaining > 0) {
+              graceRemaining = Math.max(0, graceRemaining - elapsed);
+            } else {
+              stability = Math.max(0, stability - elapsed);
+              updateStabilityBar();
+              if (stability === 0) {
+                endGame(false, null, null, "Out of oxygen!");
+                return;
+              }
+            }
+          }
+          lastTickAt = now;
+          if (heartbeatAudio) {
+            heartbeatAudio.playbackRate = bpm / 60;
+          }
+          playTick();
+          schedule();
+        }, intervalMs);
+      };
+      lastTickAt = performance.now();
+      schedule();
+    }
+
+    function stopTickLoop(keepAudio = false) {
+      if (!tickTimer) return;
+      clearTimeout(tickTimer);
+      tickTimer = null;
+      lastTickAt = 0;
+      if (heartbeatAudio && !keepAudio) {
+        heartbeatAudio.pause();
+        heartbeatAudio.currentTime = 0;
+      }
+    }
+
+    function createEmptyBoard() {
+      board = Array.from({ length: SIZE }, () =>
+        Array.from({ length: SIZE }, () => ({
+          mine: false,
+          shield: false,
+          tank: false,
+          flare: false,
+          pulse: false,
+          revealed: false,
+          flagged: false,
+          safeHit: false,
+          exploded: false,
+          steppedMine: false,
+          tankUsed: false,
+          adjacent: 0,
+        }))
+      );
+    }
+
+    function initializeBoard(safeR, safeC) {
+      const positions = [];
+      for (let r = 0; r < SIZE; r += 1) {
+        for (let c = 0; c < SIZE; c += 1) {
+          if (!isSafeZone(safeR, safeC, r, c)) {
+            positions.push([r, c]);
+          }
+        }
+      }
+
+      shuffle(positions);
+      positions.slice(0, MINES).forEach(([r, c]) => {
+        board[r][c].mine = true;
+      });
+
+      powerupsPlaced = false;
+
+      for (let r = 0; r < SIZE; r += 1) {
+        for (let c = 0; c < SIZE; c += 1) {
+          if (board[r][c].mine) continue;
+          board[r][c].adjacent = countAdjacentMines(r, c);
+        }
+      }
+      initialized = true;
+    }
+
+    function isSafeZone(safeR, safeC, r, c) {
+      return Math.abs(safeR - r) <= 1 && Math.abs(safeC - c) <= 1;
+    }
+
+    function countAdjacentMines(r, c) {
+      let count = 0;
+      for (let dr = -1; dr <= 1; dr += 1) {
+        for (let dc = -1; dc <= 1; dc += 1) {
+          if (dr === 0 && dc === 0) continue;
+          const nr = r + dr;
+          const nc = c + dc;
+          if (nr < 0 || nr >= SIZE || nc < 0 || nc >= SIZE) continue;
+          if (board[nr][nc].mine) count += 1;
+        }
+      }
+      return count;
+    }
+
+    function buildGrid() {
+      gridEl.innerHTML = "";
+      gridEl.style.gridTemplateColumns = `repeat(${SIZE}, minmax(16px, 1fr))`;
+      board.forEach((row, r) => {
+        row.forEach((cell, c) => {
+          const cellEl = document.createElement("div");
+          cellEl.className = "cell";
+          cellEl.dataset.row = r;
+          cellEl.dataset.col = c;
+          cellEl.addEventListener("click", (event) => {
+            if (event.ctrlKey) {
+              handleRightClick(r, c);
+            } else {
+              handleReveal(r, c);
+            }
+          });
+          cellEl.addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+            handleRightClick(r, c);
+          });
+          gridEl.appendChild(cellEl);
+        });
+      });
+    }
+
+    function handleReveal(r, c, fromChord = false, origin = { r, c }) {
+      if (gameOver) return;
+      ensureAudioContext();
+      ensureHeartbeatAudio();
+      if (!timer) startTimer();
+      maybeShake();
+      if (!initialized) {
+        initializeBoard(r, c);
+      }
+      const cell = board[r][c];
+      if (cell.revealed) {
+        if (cell.tank && !cell.tankUsed) {
+          activateTank(cell, getCellEl(r, c));
+        }
+        return;
+      }
+      if (cell.flagged) return;
+
+      if (cell.mine) {
+        if (shieldsHeld > 0) {
+          shieldsHeld -= 1;
+          cell.revealed = true;
+          cell.safeHit = true;
+          cell.steppedMine = true;
+          if (fromChord && !cell.flagged) {
+            cell.flagged = true;
+            flags += 1;
+          }
+          const cellEl = getCellEl(r, c);
+          cellEl.classList.add("revealed", "safe-hit", "stepped-mine");
+          cellEl.textContent = "X";
+          pushStatus("Shield absorbed the blast!");
+          playShieldBoomSound();
+          revealExplosionArea(origin.r, origin.c);
+          updateStats();
+          checkWin();
+          return;
+        }
+        playExplosionSound();
+        markExplodedMine(r, c);
+        revealExplosionArea(origin.r, origin.c);
+        endGame(false, r, c);
+        return;
+      }
+
+      revealCell(r, c);
+      if (!powerupsPlaced) {
+        placePowerups();
+      }
+      checkWin();
+    }
+
+    function revealCell(r, c) {
+      const cell = board[r][c];
+      if (cell.revealed || cell.flagged) return;
+      cell.revealed = true;
+      revealedCount += 1;
+      updateProgressBar();
+
+      const cellEl = getCellEl(r, c);
+      cellEl.classList.add("revealed");
+
+      if (cell.shield) {
+        shieldsHeld += 1;
+        adjustStability(4);
+        cellEl.classList.add("shield");
+        cellEl.textContent = `🛡${cell.adjacent}`;
+        cellEl.style.color = numberColors[cell.adjacent] || "#0f4c5c";
+        pushStatus(shieldsHeld > 1
+          ? "You found another shield!"
+          : "Shield found! One mine hit is now safe.");
+        updateStats();
+        enqueuePop();
+        checkMilestones();
+        if (cell.adjacent === 0) {
+          for (let dr = -1; dr <= 1; dr += 1) {
+            for (let dc = -1; dc <= 1; dc += 1) {
+              if (dr === 0 && dc === 0) continue;
+              const nr = r + dr;
+              const nc = c + dc;
+              if (nr < 0 || nr >= SIZE || nc < 0 || nc >= SIZE) continue;
+              revealCell(nr, nc);
+            }
+          }
+        }
+        return;
+      }
+
+      if (cell.tank) {
+        cellEl.classList.add("tank");
+        cellEl.textContent = "🫧";
+        pushStatus("Oxygen tank found!");
+        playPowerUpSound();
+        applyPowerupReady(cellEl);
+        updateStats();
+        enqueuePop();
+        checkMilestones();
+        if (cell.adjacent === 0) {
+          for (let dr = -1; dr <= 1; dr += 1) {
+            for (let dc = -1; dc <= 1; dc += 1) {
+              if (dr === 0 && dc === 0) continue;
+              const nr = r + dr;
+              const nc = c + dc;
+              if (nr < 0 || nr >= SIZE || nc < 0 || nc >= SIZE) continue;
+              revealCell(nr, nc);
+            }
+          }
+        }
+        return;
+      }
+
+      if (cell.flare) {
+        cellEl.classList.add("flare");
+        cellEl.textContent = "✦";
+        pushStatus("Flare activated!");
+        playPowerUpSound();
+        playFlareSound();
+        triggerFlare(cellEl);
+        updateStats();
+        enqueuePop();
+        checkMilestones();
+        return;
+      }
+
+      if (cell.pulse) {
+        cellEl.classList.add("pulse");
+        cellEl.textContent = "〰";
+        pushStatus("Sonar pulse activated!");
+        playPowerUpSound();
+        playSonarSound();
+        triggerPulse();
+        updateStats();
+        enqueuePop();
+        checkMilestones();
+        return;
+      }
+
+      if (cell.adjacent > 0) {
+        cellEl.textContent = cell.adjacent;
+        cellEl.style.color = numberColors[cell.adjacent] || "#1c1b18";
+        adjustStability(2);
+        enqueuePop();
+        checkMilestones();
+      } else {
+        adjustStability(2);
+        enqueuePop();
+        checkMilestones();
+        for (let dr = -1; dr <= 1; dr += 1) {
+          for (let dc = -1; dc <= 1; dc += 1) {
+            if (dr === 0 && dc === 0) continue;
+            const nr = r + dr;
+            const nc = c + dc;
+            if (nr < 0 || nr >= SIZE || nc < 0 || nc >= SIZE) continue;
+            revealCell(nr, nc);
+          }
+        }
+      }
+    }
+
+    function handleRightClick(r, c) {
+      if (gameOver) return;
+      ensureAudioContext();
+      ensureHeartbeatAudio();
+      maybeShake();
+      const cell = board[r][c];
+      if (cell.revealed && cell.tank && !cell.tankUsed) {
+        activateTank(cell, getCellEl(r, c));
+        return;
+      }
+      if (cell.revealed && cell.adjacent > 0) {
+        const flaggedCount = countAdjacentFlags(r, c);
+        if (flaggedCount === cell.adjacent) {
+          revealImpliedSafe(r, c);
+        }
+        return;
+      }
+
+      if (cell.revealed) return;
+
+      cell.flagged = !cell.flagged;
+      const cellEl = getCellEl(r, c);
+      cellEl.classList.toggle("flagged", cell.flagged);
+      cellEl.textContent = cell.flagged ? "⚑" : "";
+      flags += cell.flagged ? 1 : -1;
+      updateStats();
+    }
+
+    function countAdjacentFlags(r, c) {
+      let count = 0;
+      for (let dr = -1; dr <= 1; dr += 1) {
+        for (let dc = -1; dc <= 1; dc += 1) {
+          if (dr === 0 && dc === 0) continue;
+          const nr = r + dr;
+          const nc = c + dc;
+          if (nr < 0 || nr >= SIZE || nc < 0 || nc >= SIZE) continue;
+          if (board[nr][nc].flagged || board[nr][nc].safeHit || board[nr][nc].exploded || board[nr][nc].steppedMine) {
+            count += 1;
+          }
+        }
+      }
+      return count;
+    }
+
+    function revealImpliedSafe(r, c) {
+      for (let dr = -1; dr <= 1; dr += 1) {
+        for (let dc = -1; dc <= 1; dc += 1) {
+          if (dr === 0 && dc === 0) continue;
+          const nr = r + dr;
+          const nc = c + dc;
+          if (nr < 0 || nr >= SIZE || nc < 0 || nc >= SIZE) continue;
+          const neighbor = board[nr][nc];
+          if (!neighbor.revealed && !neighbor.flagged) {
+            handleReveal(nr, nc, true, { r, c });
+            if (gameOver) return;
+          }
+        }
+      }
+    }
+
+    function getCellEl(r, c) {
+      return gridEl.querySelector(`[data-row="${r}"][data-col="${c}"]`);
+    }
+
+    function markExplodedMine(r, c) {
+      const cell = board[r][c];
+      const cellEl = getCellEl(r, c);
+      if (!cellEl) return;
+      cell.revealed = true;
+      cell.exploded = true;
+      cell.steppedMine = true;
+      cellEl.classList.add("revealed", "stepped-mine");
+      cellEl.textContent = "X";
+    }
+
+    function revealExplosionArea(centerR, centerC) {
+      let flagsChanged = false;
+      let shieldsGained = 0;
+      for (let dr = -1; dr <= 1; dr += 1) {
+        for (let dc = -1; dc <= 1; dc += 1) {
+          if (dr === 0 && dc === 0) continue;
+          const nr = centerR + dr;
+          const nc = centerC + dc;
+          if (nr < 0 || nr >= SIZE || nc < 0 || nc >= SIZE) continue;
+          const cell = board[nr][nc];
+          const cellEl = getCellEl(nr, nc);
+          if (!cellEl || cell.revealed) continue;
+          if (cell.flagged && !cell.mine) {
+            cell.flagged = false;
+            flags -= 1;
+            flagsChanged = true;
+            cell.revealed = true;
+            revealedCount += 1;
+            updateProgressBar();
+            cellEl.classList.remove("flagged");
+            cellEl.classList.add("revealed", "cleared-flag");
+            cellEl.textContent = "—";
+            continue;
+          }
+          if (cell.flagged && cell.mine) {
+            cell.flagged = false;
+            flags -= 1;
+            flagsChanged = true;
+          }
+          cell.revealed = true;
+          cellEl.classList.add("revealed");
+          if (cell.mine) {
+            cell.exploded = true;
+            cellEl.classList.add("mine", "exploded-mine");
+            cellEl.textContent = "✹";
+            continue;
+          }
+          revealedCount += 1;
+          updateProgressBar();
+          if (cell.shield) {
+            shieldsGained += 1;
+            cellEl.classList.add("shield");
+            cellEl.textContent = `🛡${cell.adjacent}`;
+            cellEl.style.color = numberColors[cell.adjacent] || "#0f4c5c";
+            enqueuePop();
+            checkMilestones();
+            continue;
+          }
+          if (cell.tank) {
+            cellEl.classList.add("tank");
+            cellEl.textContent = "🫧";
+            pushStatus("Oxygen tank found!");
+            playPowerUpSound();
+            applyPowerupReady(cellEl);
+            enqueuePop();
+            checkMilestones();
+            continue;
+          }
+          if (cell.flare) {
+            cellEl.classList.add("flare");
+            cellEl.textContent = "✦";
+            pushStatus("Flare activated!");
+            playPowerUpSound();
+            playFlareSound();
+            triggerFlare(cellEl);
+            enqueuePop();
+            checkMilestones();
+            continue;
+          }
+          if (cell.pulse) {
+            cellEl.classList.add("pulse");
+            cellEl.textContent = "〰";
+            pushStatus("Sonar pulse activated!");
+            playPowerUpSound();
+            playSonarSound();
+            triggerPulse();
+            enqueuePop();
+            checkMilestones();
+            continue;
+          }
+          if (cell.adjacent > 0) {
+            cellEl.textContent = cell.adjacent;
+            cellEl.style.color = numberColors[cell.adjacent] || "#1c1b18";
+            enqueuePop();
+            checkMilestones();
+          } else {
+            cellEl.textContent = "";
+            enqueuePop();
+            checkMilestones();
+          }
+        }
+      }
+      if (shieldsGained > 0) {
+        shieldsHeld += shieldsGained;
+      }
+      if (flagsChanged || shieldsGained > 0) {
+        updateStats();
+      }
+    }
+
+    function revealAllMines(triggerR, triggerC) {
+      board.forEach((row, r) => {
+        row.forEach((cell, c) => {
+          const cellEl = getCellEl(r, c);
+          if (cell.steppedMine) {
+            cellEl.classList.add("revealed", "stepped-mine");
+            cellEl.textContent = "X";
+          } else if (cell.flagged && !cell.mine) {
+            cellEl.classList.remove("flagged");
+            cellEl.classList.add("revealed", "wrong-flag");
+            cellEl.textContent = "✖";
+          } else if (cell.mine) {
+            cellEl.classList.add("revealed", "mine");
+            if (cell.exploded) {
+              cellEl.textContent = "✹";
+            } else {
+              cellEl.textContent = (r === triggerR && c === triggerC) ? "✹" : "●";
+            }
+          } else if (cell.tank && !cell.revealed) {
+            cellEl.classList.add("revealed", "tank");
+            cellEl.textContent = "🫧";
+          } else if (cell.flare && !cell.revealed) {
+            cellEl.classList.add("revealed", "flare");
+            cellEl.textContent = "✦";
+          } else if (cell.pulse && !cell.revealed) {
+            cellEl.classList.add("revealed", "pulse");
+            cellEl.textContent = "〰";
+          } else if (cell.shield && !cell.revealed) {
+            cellEl.classList.add("revealed", "shield");
+            cellEl.textContent = `🛡${cell.adjacent}`;
+            cellEl.style.color = numberColors[cell.adjacent] || "#0f4c5c";
+          }
+        });
+      });
+    }
+
+    function checkWin() {
+      const totalCells = SIZE * SIZE;
+      if (revealedCount === totalCells - MINES) {
+        endGame(true);
+      }
+    }
+
+    function endGame(won, r, c, message) {
+      gameOver = true;
+      stopTimer();
+      const oxygenDeath = message === "Out of oxygen!";
+      stopTickLoop(oxygenDeath);
+      stability = 0;
+      updateStabilityBar();
+      if (meterBubblesEl) {
+        meterBubblesEl.classList.add("paused");
+      }
+      if (!won) {
+        if (oxygenDeath) {
+          playNoOxygenSound();
+        } else {
+          ensureAudioContext();
+          playFailureSound();
+        }
+      } else {
+        ensureAudioContext();
+        playWinSound();
+      }
+      if (oxygenDeath && heartbeatAudio) {
+        heartbeatAudio.playbackRate = 0.6;
+        heartbeatAudio.volume = 0.2;
+        setTimeout(() => {
+          heartbeatAudio.pause();
+          heartbeatAudio.currentTime = 0;
+        }, 1200);
+      }
+      const totalSafe = SIZE * SIZE - MINES;
+      const clearedPercent = Math.round((revealedCount / totalSafe) * 100);
+      let newRecord = false;
+      let timeClass = "";
+      let tilesClass = "";
+      if (time > bestTime) {
+        bestTime = time;
+        timeClass = "new-record";
+        newRecord = true;
+      }
+      if (clearedPercent > bestPercent) {
+        bestPercent = clearedPercent;
+        tilesClass = "new-record";
+        newRecord = true;
+      }
+      highscoreTimeEl.textContent = `Survival: ${bestTime}s`;
+      highscoreTilesEl.textContent = `Tiles cleared: ${bestPercent}%`;
+      resultReportEl.innerHTML = `
+        <div class="${timeClass}">Survival time: ${time}s</div>
+        <div class="${tilesClass}">Tiles cleared: ${clearedPercent}%</div>
+        ${newRecord ? "<div class=\"new-record\">New high score!</div>" : ""}
+      `;
+      if (won) {
+        pushStatus("You cleared the field!");
+        reportTitleEl.textContent = "Supervisor's Report";
+        revealAllMines(r, c);
+      } else {
+        const baseMessage = message || "Boom! Shields depleted.";
+        pushStatus(baseMessage);
+        reportTitleEl.textContent = "Autopsy";
+        revealAllMines(r, c);
+      }
+    }
+
+    function calculateScore() {
+      let correct = 0;
+      let incorrect = 0;
+      board.forEach((row) => {
+        row.forEach((cell) => {
+          if (cell.flagged && cell.mine) correct += 1;
+          if (cell.flagged && !cell.mine) incorrect += 1;
+        });
+      });
+      return { correct, incorrect, score: correct - 3 * incorrect };
+    }
+
+    function updateStats() {
+      minesLeft = MINES - flags;
+      mineCountEl.textContent = `Mines: ${MINES}`;
+      flagCountEl.textContent = `Flags: ${flags}`;
+      shieldIconsEl.textContent = "🛡".repeat(shieldsHeld);
+      updateStabilityBar();
+      updateProgressBar();
+    }
+
+    function startTimer() {
+      startTickLoop();
+      timer = setInterval(() => {
+        time += 1;
+        timerEl.textContent = `Time: ${time}s`;
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (!timer) return;
+      clearInterval(timer);
+      timer = null;
+      stopTickLoop();
+    }
+
+    function resetGame() {
+      stopTimer();
+      time = 0;
+      timerEl.textContent = "Time: 0s";
+      revealedCount = 0;
+      flags = 0;
+      shieldsHeld = 0;
+      minesLeft = MINES;
+      gameOver = false;
+      stability = maxStability;
+      initialized = false;
+      lastTickAt = 0;
+      graceRemaining = graceDuration;
+      scoreCardEl.textContent = "0%";
+      scoreDetailsEl.textContent = "Safe tiles cleared: 0%";
+      resultReportEl.textContent = "No result yet.";
+      shieldIconsEl.textContent = "";
+      milestoneBannerEl.style.display = "none";
+      nextMilestoneIndex = 0;
+      reportTitleEl.textContent = "Progress";
+      highscoreTimeEl.textContent = `Survival: ${bestTime}s`;
+      highscoreTilesEl.textContent = `Tiles cleared: ${bestPercent}%`;
+      if (meterBubblesEl) {
+        meterBubblesEl.classList.remove("paused");
+      }
+      if (heartbeatAudio) {
+        heartbeatAudio.pause();
+        heartbeatAudio.currentTime = 0;
+      }
+      powerupsPlaced = false;
+      statusLines.length = 0;
+      pushStatus("Make your first move.");
+      createEmptyBoard();
+      buildGrid();
+      updateStats();
+      updateProgressBar();
+      updateTestReveal();
+    }
+
+    function adjustStability(delta) {
+      const cap = getOxygenCap();
+      const next = stability + delta;
+      if (delta > 0) {
+        const capped = Math.min(next, cap);
+        stability = Math.max(stability, capped);
+      } else {
+        stability = Math.max(0, next);
+      }
+      updateStabilityBar();
+    }
+
+    function updateStabilityBar() {
+      const percent = Math.max(0, Math.min(1, stability / maxStability)) * 100;
+      stabilityBarEl.style.width = `${percent}%`;
+      const dim = Math.pow(1 - percent / 100, 1.1) * 0.85;
+      const sat = 1 - Math.pow(1 - percent / 100, 1.4) * 0.7;
+      boardWrapEl.style.setProperty("--oxygen-dim", dim.toFixed(3));
+      boardWrapEl.style.setProperty("--oxygen-sat", sat.toFixed(3));
+      if (heartbeatAudio) {
+        heartbeatAudio.volume = getHeartbeatVolume();
+      }
+    }
+
+    function getHeartbeatVolume() {
+      const percent = Math.max(0, Math.min(1, stability / maxStability));
+      if (percent <= 0.5) return 1;
+      const scaled = (1 - percent) / 0.5;
+      return 0.05 + scaled * 0.95;
+    }
+
+    function updateProgressBar() {
+      const totalSafe = SIZE * SIZE - MINES;
+      const percent = Math.max(0, Math.min(1, revealedCount / totalSafe)) * 100;
+      const rounded = Math.round(percent);
+      progressFillEl.style.width = `${percent}%`;
+      scoreCardEl.textContent = `${rounded}%`;
+      scoreDetailsEl.textContent = `Safe tiles cleared: ${rounded}%`;
+    }
+
+    function activateTank(cell, cellEl) {
+      if (cell.tankUsed) return;
+      cell.tankUsed = true;
+      stability += maxStability * 0.5;
+      updateStabilityBar();
+      pushStatus("Oxygen tank engaged!");
+      playTankSound();
+      if (cellEl) {
+        cellEl.classList.remove("powerup-ready");
+      }
+    }
+
+    function pushStatus(message) {
+      if (!message) return;
+      statusLines.unshift(message);
+      if (statusLines.length > 3) statusLines.pop();
+      renderStatus();
+    }
+
+    function renderStatus() {
+      const lines = statusEl.querySelectorAll(".status-line");
+      lines.forEach((line, index) => {
+        line.textContent = statusLines[index] || "";
+      });
+    }
+
+    function applyPowerupReady(cellEl) {
+      cellEl.classList.add("powerup-ready");
+    }
+
+    function placePowerups() {
+      const available = [];
+      for (let r = 0; r < SIZE; r += 1) {
+        for (let c = 0; c < SIZE; c += 1) {
+          const cell = board[r][c];
+          if (!cell.mine && !cell.revealed) {
+            available.push([r, c]);
+          }
+        }
+      }
+      shuffle(available);
+      const tanks = Math.random() < PROB_O2_TANK ? 1 : 0;
+      const flares = Math.random() < PROB_FLARE ? 1 : 0;
+      const pulses = Math.random() < PROB_PULSE ? 1 : 0;
+      const shieldsToPlace = Math.floor(Math.random() * (SHIELDS_MAX - SHIELDS_MIN + 1)) + SHIELDS_MIN;
+      let index = 0;
+      for (let i = 0; i < shieldsToPlace && index < available.length; i += 1, index += 1) {
+        const [r, c] = available[index];
+        board[r][c].shield = true;
+      }
+      for (let i = 0; i < tanks && index < available.length; i += 1, index += 1) {
+        const [r, c] = available[index];
+        board[r][c].tank = true;
+      }
+      for (let i = 0; i < flares && index < available.length; i += 1, index += 1) {
+        const [r, c] = available[index];
+        board[r][c].flare = true;
+      }
+      for (let i = 0; i < pulses && index < available.length; i += 1, index += 1) {
+        const [r, c] = available[index];
+        board[r][c].pulse = true;
+      }
+      powerupsPlaced = true;
+    }
+
+    function triggerFlare(cellEl) {
+      flareActive = true;
+      if (cellEl) {
+        launchFlareRocket(cellEl);
+      } else {
+        const fallback = gridEl.querySelector(".cell");
+        if (fallback) {
+          launchFlareRocket(fallback);
+        }
+      }
+      setTimeout(() => {
+        gridEl.classList.add("flare-active");
+        const mines = [];
+        board.forEach((row, r) => {
+          row.forEach((cell, c) => {
+            if (cell.mine && !cell.revealed) {
+              mines.push({ r, c });
+            }
+          });
+        });
+        mines.forEach(({ r, c }) => {
+          const mineEl = getCellEl(r, c);
+          if (!mineEl) return;
+          mineEl.classList.add("flare-mine");
+          setTimeout(() => {
+            mineEl.classList.remove("flare-mine");
+          }, 3000);
+        });
+        setTimeout(() => {
+          flareActive = false;
+          gridEl.classList.remove("flare-active");
+        }, 3000);
+      }, 700);
+    }
+
+    function ensureTestField() {
+      if (!initialized) {
+        initializeBoard(0, 0);
+      }
+    }
+
+    function launchFlareRocket(cellEl) {
+      const rocket = document.createElement("div");
+      rocket.className = "flare-rocket";
+      rocket.innerHTML = `
+        <svg viewBox="0 0 48 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="rocketBody" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#e8edf3"/>
+              <stop offset="100%" stop-color="#8e9aa6"/>
+            </linearGradient>
+            <linearGradient id="rocketMetal" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stop-color="#2f343a"/>
+              <stop offset="50%" stop-color="#4c545d"/>
+              <stop offset="100%" stop-color="#262a2f"/>
+            </linearGradient>
+            <linearGradient id="rocketFlame" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#ffd18a"/>
+              <stop offset="100%" stop-color="#ff5a2a"/>
+            </linearGradient>
+          </defs>
+          <path d="M24 4 L34 18 L34 66 L24 88 L14 66 L14 18 Z" fill="url(#rocketBody)" stroke="#424a52" stroke-width="2"/>
+          <path d="M14 58 L4 72 L14 72 Z" fill="url(#rocketMetal)"/>
+          <path d="M34 58 L44 72 L34 72 Z" fill="url(#rocketMetal)"/>
+          <rect x="20" y="26" width="8" height="22" rx="3" fill="#1b2026" stroke="#6b7781" stroke-width="1.5"/>
+          <path d="M24 88 C18 88 16 92 16 96 C24 92 24 92 32 96 C32 92 30 88 24 88 Z" fill="url(#rocketFlame)"/>
+        </svg>
+      `;
+      const wrapRect = boardWrapEl.getBoundingClientRect();
+      const cellRect = cellEl.getBoundingClientRect();
+      const startX = cellRect.left - wrapRect.left + cellRect.width / 2;
+      const startY = cellRect.top - wrapRect.top + cellRect.height / 2;
+      rocket.style.left = `${startX}px`;
+      rocket.style.top = `${startY}px`;
+      boardWrapEl.appendChild(rocket);
+      requestAnimationFrame(() => {
+        rocket.style.transform = `translate(-50%, -${startY + 30}px)`;
+        rocket.style.opacity = "0";
+      });
+      setTimeout(() => {
+        rocket.remove();
+      }, 1100);
+    }
+
+    function triggerPulse() {
+      boardWrapEl.classList.add("pulse-active");
+      const rowDelay = 3000 / SIZE;
+      const pulseRow = (r) => {
+        if (r >= SIZE) {
+          boardWrapEl.classList.remove("pulse-active");
+          return;
+        }
+        const rowCells = gridEl.querySelectorAll(`[data-row="${r}"]`);
+        rowCells.forEach((cellEl) => cellEl.classList.add("pulse-row"));
+        for (let c = 0; c < SIZE; c += 1) {
+          const cell = board[r][c];
+          if (cell.mine && !cell.revealed) {
+            const cellEl = getCellEl(r, c);
+            if (cellEl) {
+              cellEl.classList.add("pulse-mine");
+              setTimeout(() => {
+                cellEl.classList.remove("pulse-mine");
+              }, 1500);
+            }
+          }
+        }
+        setTimeout(() => {
+          rowCells.forEach((cellEl) => cellEl.classList.remove("pulse-row"));
+        }, 600);
+        setTimeout(() => pulseRow(r + 1), rowDelay);
+      };
+      pulseRow(0);
+    }
+
+    function updateTestReveal() {
+      if (!testRevealMines) {
+        gridEl.querySelectorAll(".test-mine").forEach((cellEl) => {
+          cellEl.classList.remove("test-mine");
+        });
+        return;
+      }
+      board.forEach((row, r) => {
+        row.forEach((cell, c) => {
+          if (cell.mine && !cell.revealed) {
+            const cellEl = getCellEl(r, c);
+            if (cellEl) {
+              cellEl.classList.add("test-mine");
+            }
+          }
+        });
+      });
+    }
+
+    function getOxygenCap() {
+      const totalSafe = SIZE * SIZE - MINES;
+      const remainingSafe = Math.max(0, totalSafe - revealedCount);
+      const remainingPercent = (remainingSafe / totalSafe) * 100;
+      const scaled = remainingPercent < 50 ? remainingPercent * 2 : 100;
+      const capPercent = Math.max(25, scaled);
+      return (capPercent / 100) * maxStability;
+    }
+
+    function maybeShake() {
+      const percent = stability / maxStability;
+      if (percent >= 0.5 || !boardWrapEl) return;
+      boardWrapEl.classList.remove("shake");
+      void boardWrapEl.offsetWidth;
+      boardWrapEl.classList.add("shake");
+    }
+
+    function checkMilestones() {
+      const totalSafe = SIZE * SIZE - MINES;
+      const progress = revealedCount / totalSafe;
+      if (nextMilestoneIndex >= milestones.length) return;
+      if (progress >= milestones[nextMilestoneIndex]) {
+        const percent = Math.round(milestones[nextMilestoneIndex] * 100);
+        milestoneBannerEl.textContent = `${percent}% Complete`;
+        milestoneBannerEl.style.display = "block";
+        milestoneBannerEl.style.background = "linear-gradient(135deg, #0f4c5c, #356859)";
+        milestoneBannerEl.style.color = "#fdfbf6";
+        milestoneBannerEl.style.textAlign = "center";
+        milestoneBannerEl.style.padding = "18px 12px";
+        setTimeout(() => {
+          milestoneBannerEl.style.display = "none";
+        }, 2200);
+        nextMilestoneIndex += 1;
+      }
+    }
+
+    function openHowto() {
+      if (!howtoOverlay) return;
+      howtoOverlay.classList.add("open");
+      howtoOverlay.setAttribute("aria-hidden", "false");
+    }
+
+    function closeHowto() {
+      if (!howtoOverlay) return;
+      howtoOverlay.classList.remove("open");
+      howtoOverlay.setAttribute("aria-hidden", "true");
+    }
+
+    gridEl.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+
+    if (new URLSearchParams(window.location.search).get("test") === "1") {
+      testControlsEl.style.display = "flex";
+      testFlareBtn.addEventListener("click", () => {
+        ensureAudioContext();
+        ensureTestField();
+        playPowerUpSound();
+        playFlareSound();
+        triggerFlare(getCellEl(0, 0));
+      });
+      testPulseBtn.addEventListener("click", () => {
+        ensureAudioContext();
+        ensureTestField();
+        playPowerUpSound();
+        playSonarSound();
+        triggerPulse();
+      });
+      testToggleBtn.addEventListener("click", () => {
+        testRevealMines = !testRevealMines;
+        testToggleBtn.textContent = testRevealMines ? "Hide Mines" : "Reveal Mines";
+        updateTestReveal();
+      });
+    }
+
+    restartBtn.addEventListener("click", resetGame);
+    if (howtoButton && howtoOverlay) {
+      howtoButton.addEventListener("click", openHowto);
+      if (howtoClose) {
+        howtoClose.addEventListener("click", closeHowto);
+      }
+      if (howtoCloseBtn) {
+        howtoCloseBtn.addEventListener("click", closeHowto);
+      }
+      howtoOverlay.addEventListener("click", (event) => {
+        if (event.target === howtoOverlay) {
+          closeHowto();
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && howtoOverlay.classList.contains("open")) {
+          closeHowto();
+        }
+      });
+    }
+    resetGame();
+  </script>
+</body>
+</html>
