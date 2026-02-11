@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Land Reform Explorer</title>
+<style>
+body{font-family:Arial,sans-serif;margin:14px;background:#f7f7f7;color:#111}.bar{display:flex;gap:12px;align-items:center;margin-bottom:12px}select{padding:6px 8px;font-size:14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{background:white;border:1px solid #ddd;padding:10px}img{width:100%;height:auto;border:1px solid #ddd}table{border-collapse:collapse;width:100%;font-size:13px}th,td{border:1px solid #ddd;padding:6px;text-align:right}th:first-child,td:first-child{text-align:left}
+</style></head><body>
+<h2>Land Reform Border Explorer (100% datasets)</h2>
+<div class='bar'><label>Treatment <select id='tr'></select></label><label>Control <select id='ct'></select></label><span id='sample'></span></div>
+<div class='grid'>
+<div class='card'><h3>Owner-share RD</h3><img id='p_owner'></div>
+<div class='card'><h3>Mean owner land RD</h3><img id='p_mean'></div>
+<div class='card'><h3>Share land &gt;2ha RD</h3><img id='p_gt2'></div>
+<div class='card'><h3>Owner-share map</h3><img id='map'></div>
+</div>
+<div class='card' style='margin-top:14px'><h3>RD Table</h3><table id='tbl'><thead><tr><th>Outcome</th><th>Coef</th><th>SE</th><th>p</th><th>Control mean</th><th>Depvar mean</th><th>N</th></tr></thead><tbody></tbody></table></div>
+<script>
+async function main(){
+ const data=await (await fetch('land_reform_explorer_manifest.json')).json();
+ const tr=document.getElementById('tr'), ct=document.getElementById('ct'), sample=document.getElementById('sample');
+ const pOwner=document.getElementById('p_owner'), pMean=document.getElementById('p_mean'), pGt2=document.getElementById('p_gt2'), map=document.getElementById('map');
+ const tbody=document.querySelector('#tbl tbody');
+ Object.entries(data).forEach(([k,v])=>{const o=document.createElement('option');o.value=k;o.textContent=v.label;tr.appendChild(o);});
+ function fillControls(){ct.innerHTML='';const cur=data[tr.value];Object.entries(cur.controls).forEach(([k,v])=>{const o=document.createElement('option');o.value=k;o.textContent=v.label;ct.appendChild(o);});sample.textContent='Sample: '+cur.sample;}
+ function render(){const cur=data[tr.value].controls[ct.value];pOwner.src=cur.plots.owner_share;pMean.src=cur.plots.mean_land_owners_ha;pGt2.src=cur.plots.share_land_gt2ha;map.src=cur.map;tbody.innerHTML='';cur.table_rows.forEach(r=>{const trr=document.createElement('tr');[r.outcome,r.coef.toFixed(3),r.se.toFixed(3),r.p.toFixed(3),r.left_mean.toFixed(3),r.depvar_mean.toFixed(3),r.n.toLocaleString()].forEach(c=>{const td=document.createElement('td');td.textContent=c;trr.appendChild(td);});tbody.appendChild(trr);});}
+ tr.addEventListener('change',()=>{fillControls();render();}); ct.addEventListener('change',render); tr.value='wb'; fillControls(); ct.value='odisha'; render();
+}
+main();
+</script></body></html>
