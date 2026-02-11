@@ -1,4 +1,4 @@
-{
+window.LAND_REFORM_MANIFEST = {
   "wb": {
     "label": "West Bengal",
     "sample": "100pct",
@@ -284,4 +284,4 @@
       }
     }
   }
-}
+};

@@ -3,6 +3,9 @@
 body{font-family:Arial,sans-serif;margin:14px;background:#f7f7f7;color:#111}.bar{display:flex;gap:12px;align-items:center;margin-bottom:12px}select{padding:6px 8px;font-size:14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{background:white;border:1px solid #ddd;padding:10px}img{width:100%;height:auto;border:1px solid #ddd}table{border-collapse:collapse;width:100%;font-size:13px}th,td{border:1px solid #ddd;padding:6px;text-align:right}th:first-child,td:first-child{text-align:left}
 </style></head><body>
 <h2>Land Reform Border Explorer (100% datasets)</h2>
+<p style='margin:6px 0 14px 0;font-size:13px;line-height:1.35'>
+  This is an experimental dashboard exploring RD treatment effects of land reforms in Kerala and West Bengal. The data are land ownership distribution data from the universe of rural households, captured by the SECC in 2012. You shouldn't interpret these as treatment effects of land reform because (i) they depend a lot on the control group; (ii) there were probably pre-existing differences along these state boundaries.
+</p>
 <div class='bar'><label>Treatment <select id='tr'></select></label><label>Control <select id='ct'></select></label><span id='sample'></span></div>
 <div class='grid'>
 <div class='card'><h3>Owner-share RD</h3><img id='p_owner'></div>
@@ -11,9 +14,20 @@ body{font-family:Arial,sans-serif;margin:14px;background:#f7f7f7;color:#111}.bar
 <div class='card'><h3>Owner-share map</h3><img id='map'></div>
 </div>
 <div class='card' style='margin-top:14px'><h3>RD Table</h3><table id='tbl'><thead><tr><th>Outcome</th><th>Coef</th><th>SE</th><th>p</th><th>Control mean</th><th>Depvar mean</th><th>N</th></tr></thead><tbody></tbody></table></div>
+<div id='err' style='display:none;margin-top:12px;padding:10px;background:#ffecec;border:1px solid #e0b4b4;color:#8a1f1f'></div>
+<script src='land_reform_explorer_manifest.js'></script>
 <script>
 async function main(){
- const data=await (await fetch('land_reform_explorer_manifest.json')).json();
+ let data;
+ try{
+  if(window.LAND_REFORM_MANIFEST){data=window.LAND_REFORM_MANIFEST;}
+  else{const res=await fetch('land_reform_explorer_manifest.json'); if(!res.ok) throw new Error('Manifest fetch failed: '+res.status); data=await res.json();}
+ }catch(e){
+  const err=document.getElementById('err');
+  err.style.display='block';
+  err.textContent='Could not load data manifest from current folder. Make sure land_reform_explorer_manifest.js (or .json) is present. Error: '+(e&&e.message?e.message:String(e));
+  return;
+ }
  const tr=document.getElementById('tr'), ct=document.getElementById('ct'), sample=document.getElementById('sample');
  const pOwner=document.getElementById('p_owner'), pMean=document.getElementById('p_mean'), pGt2=document.getElementById('p_gt2'), map=document.getElementById('map');
  const tbody=document.querySelector('#tbl tbody');
