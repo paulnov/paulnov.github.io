@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Economists Chess Arena Member List</title>
+  <style>
+    :root {
+      --bg-top: #f8fbfc;
+      --bg-bottom: #edf2f6;
+      --panel: rgba(255, 255, 255, 0.88);
+      --panel-alt: rgba(248, 250, 252, 0.92);
+      --line: #d9e1e8;
+      --ink: #17212b;
+      --muted: #5f6c79;
+      --accent: #0f766e;
+      --accent-soft: rgba(15, 118, 110, 0.11);
+      --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 40px 20px 72px;
+      font-family: "Avenir Next", "Segoe UI Variable Display", "Helvetica Neue", sans-serif;
+      line-height: 1.5;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 28%),
+        linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+    }
+    body > * {
+      width: min(1120px, 100%);
+      margin-inline: auto;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 3vw, 2.85rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 650;
+      text-wrap: balance;
+    }
+    .controls {
+      margin-bottom: 10px;
+    }
+    input[type="text"] {
+      appearance: none;
+      width: min(100%, 560px);
+      padding: 13px 16px;
+      font: inherit;
+      font-size: 0.98rem;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(130, 145, 160, 0.35);
+      border-radius: 999px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+    }
+    input[type="text"]::placeholder {
+      color: #7a8794;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: rgba(15, 118, 110, 0.6);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
+    }
+    .count {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+    }
+    .count span {
+      display: inline-flex;
+      min-width: 2.1ch;
+      justify-content: center;
+      margin-right: 0.35rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .table-shell {
+      width: min(1120px, 100%);
+      margin-inline: auto;
+      overflow-x: auto;
+      border: 1px solid rgba(130, 145, 160, 0.22);
+      border-radius: 22px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    th, td {
+      text-align: left;
+      padding: 15px 18px;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+    }
+    th {
+      background: rgba(244, 248, 250, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    td {
+      font-size: 0.98rem;
+      background: rgba(255, 255, 255, 0.9);
+    }
+    td:first-child {
+      font-family: "SFMono-Regular", "IBM Plex Mono", "Menlo", monospace;
+      font-size: 0.92rem;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    td:nth-child(2) {
+      font-weight: 560;
+    }
+    td:last-child {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    tbody tr:nth-child(even) td {
+      background: var(--panel-alt);
+    }
+    tbody tr:hover td {
+      background: #f2fbf8;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    tr.hidden {
+      display: none;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(15, 118, 110, 0.25);
+      transition: color 0.18s ease, border-color 0.18s ease;
+    }
+    a:hover {
+      color: var(--accent);
+      border-color: rgba(15, 118, 110, 0.55);
+    }
+    @media (max-width: 700px) {
+      body {
+        padding: 28px 14px 48px;
+      }
+      h1 {
+        margin-bottom: 12px;
+        font-size: 1.75rem;
+      }
+      input[type="text"] {
+        width: 100%;
+      }
+      th, td {
+        padding: 13px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Economists Chess Arena Member List</h1>
+  <div class="controls">
+    <input id="filterInput" type="text" placeholder="Filter by lichess username or name">
+  </div>
+  <div class="count"><span id="visibleCount"></span> members shown</div>
+
+  <div class="table-shell">
+  <table id="memberTable">
+    <thead>
+      <tr>
+        <th>Lichess username</th>
+        <th>Full name</th>
+        <th>What job title best describes your position?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td>ayushkumar2</td>
+          <td><a href="https://x.com/aylovedata" target="_blank" rel="noopener noreferrer">Ayush Kumar</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>Aaron12321</td>
+          <td><a href="https://aaronjleonard.github.io" target="_blank" rel="noopener noreferrer">Aaron Leonard</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>aaronds</td>
+          <td><a href="https://aarondsullivan.github.io" target="_blank" rel="noopener noreferrer">Aaron Sullivan</a></td>
+          <td>Lecturer/postdoc</td>
+        </tr>
+<tr>
+          <td>adrianonaso</td>
+          <td><a href="https://www.redphd.it/current-students/24-204/pace" target="_blank" rel="noopener noreferrer">Adriano Pace</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>advait_h_moharir</td>
+          <td><a href="https://PhD student" target="_blank" rel="noopener noreferrer">Advait Moharir</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>amateur_nonmaster</td>
+          <td><a href="https://weiliangtan.com" target="_blank" rel="noopener noreferrer">Weiliang Tan</a></td>
+          <td>Postdoctoral fellow</td>
+        </tr>
+<tr>
+          <td>Anonforrankings</td>
+          <td><a href="https://www.linkedin.com/in/marcus-cundiff-4a3951149" target="_blank" rel="noopener noreferrer">Marcus Cundiff</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>AvivMCaspi</td>
+          <td><a href="https://sites.google.com/view/avivcaspi" target="_blank" rel="noopener noreferrer">Aviv Caspi</a></td>
+          <td>Postdoctoral fellow</td>
+        </tr>
+<tr>
+          <td>bcw1234</td>
+          <td><a href="https://sites.google.com/view/luwang" target="_blank" rel="noopener noreferrer">Lu Wang</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>BerlinSpringbok</td>
+          <td><a href="https://sites.google.com/site/kaibarron/" target="_blank" rel="noopener noreferrer">Kai Barron</a></td>
+          <td>Postdoctoral fellow</td>
+        </tr>
+<tr>
+          <td>Bhboehlert</td>
+          <td><a href="https://x.com/bhboehlert" target="_blank" rel="noopener noreferrer">Benjamin Boehlert</a></td>
+          <td>Predoctoral fellow</td>
+        </tr>
+<tr>
+          <td>Bonsahara</td>
+          <td><a href="https://www.linkedin.com/in/babak-sahragard?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener noreferrer">Bask Sahragard</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>Brennan_I</td>
+          <td><a href="https://economics.princeton.edu/graduate-program/graduate-student-directory/ https://www.linkedin.com/in/matthew-pitcock-799386181" target="_blank" rel="noopener noreferrer">Brennan McLachlan</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>cianruane</td>
+          <td><a href="https://www.cianruane.com/" target="_blank" rel="noopener noreferrer">Cian Ruane</a></td>
+          <td>Central Bank Economist</td>
+        </tr>
+<tr>
+          <td>dainisz83</td>
+          <td><a href="https://sites.google.com/view/dainiszegners/welcome" target="_blank" rel="noopener noreferrer">Dainis Zegners</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>DavidSmerdon</td>
+          <td><a href="https://x.com/dsmerdon" target="_blank" rel="noopener noreferrer">David Smerdon</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>dsonnens</td>
+          <td><a href="https://sonnenstuhl.github.io" target="_blank" rel="noopener noreferrer">Daniel Sonnenstuhl</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>econ_hicks</td>
+          <td><a href="https://jeffrey-hicks.com/" target="_blank" rel="noopener noreferrer">Jeffrey Hicks</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>econpi</td>
+          <td><a href="https://econpiyush.github.io" target="_blank" rel="noopener noreferrer">Piyush Gade</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>eigenblunder</td>
+          <td><a href="https://mjamurphy.com" target="_blank" rel="noopener noreferrer">Mike Murphy</a></td>
+          <td>Postdoctoral fellow</td>
+        </tr>
+<tr>
+          <td>Elpuercoespin</td>
+          <td><a href="https://www.jeddevaro.com/" target="_blank" rel="noopener noreferrer">Jed DeVaro</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>emilybookworm</td>
+          <td><a href="https://www.linkedin.com/in/emily-paulin923" target="_blank" rel="noopener noreferrer">Emily Paulin</a></td>
+          <td>Predoctoral fellow</td>
+        </tr>
+<tr>
+          <td>Felix_Hasselblad</td>
+          <td><a href="https://www.linkedin.com/in/felix-hasselblad?utm_source=share&amp;utm_campaign=share_via&amp;utm_content=profile&amp;utm_medium=ios_app" target="_blank" rel="noopener noreferrer">Felix Hasselblad</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>ggkimchi</td>
+          <td><a href="https://x.com/sykim_econ" target="_blank" rel="noopener noreferrer">Seongyoon Kim</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>gr_94</td>
+          <td><a href="https://giuliorossetti94.github.io/" target="_blank" rel="noopener noreferrer">Giulio rossetti</a></td>
+          <td>Postdoctoral fellow</td>
+        </tr>
+<tr>
+          <td>hbw13</td>
+          <td><a href="https://sites.google.com/view/harrison-wheeler" target="_blank" rel="noopener noreferrer">Harry Wheeler</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>hgxyz</td>
+          <td><a href="https://in.linkedin.com/in/hgulabani" target="_blank" rel="noopener noreferrer">Herry Gulabani</a></td>
+          <td>Predoctoral fellow</td>
+        </tr>
+<tr>
+          <td>https://lichess.org/@/Meatshield262</td>
+          <td><a href="https://bsky.app/profile/did:plc:lzle75puitc2bix5zddlkl25" target="_blank" rel="noopener noreferrer">Bryan Weber</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>https://lichess.org/@/NotCreativeUsername</td>
+          <td><a href="https://sites.google.com/view/dariia-mykhailyshyna/main?authuser=0" target="_blank" rel="noopener noreferrer">Dariia Mykhailyshyna</a></td>
+          <td>Postdoctoral fellow</td>
+        </tr>
+<tr>
+          <td>huseynovecon</td>
+          <td><a href="https://samirhuseynov.com" target="_blank" rel="noopener noreferrer">Samir Huseynov</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>iluvdaravens</td>
+          <td><a href="https://www.brandonenriquez.com" target="_blank" rel="noopener noreferrer">Brandon Enriquez</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>junqueira</td>
+          <td><a href="https://www.gjunqueira.com/" target="_blank" rel="noopener noreferrer">Guilherme Junqueira</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>Kluddiron</td>
+          <td><a href="https://econ.msu.edu/about/directory/sweeney-nicholas-grad-2023" target="_blank" rel="noopener noreferrer">Nicholas John Sweeney</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>kojeve13</td>
+          <td><a href="https://twitter.com/@bettercalleuler" target="_blank" rel="noopener noreferrer">Panos Tsiareas</a></td>
+          <td>Predoctoral fellow</td>
+        </tr>
+<tr>
+          <td>leosaenger</td>
+          <td><a href="https://Twitter @saengerleo/leosaenger.com" target="_blank" rel="noopener noreferrer">Leo Saenger</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>Market_failure</td>
+          <td><a href="http://www.iwh-halle.de/en/about-the-iwh/people/detail/zsigmond-szajbely" target="_blank" rel="noopener noreferrer">Zsigmond Szajbely</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>martinrinaldi</td>
+          <td><a href="https://x.com/jmnrinaldi?s=21&amp;t=vmb7X2sp_z1JQMAq2gu59g" target="_blank" rel="noopener noreferrer">Martin Rinaldi</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>matchaman1</td>
+          <td><a href="https://www.linkedin.com/in/sean-gao-198018173" target="_blank" rel="noopener noreferrer">Sean Gao</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>mcaceresb</td>
+          <td><a href="https://mcaceresb.github.io" target="_blank" rel="noopener noreferrer">Mauricio Caceres Bravo</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>mdoepke</td>
+          <td><a href="https://mdoepke.github.io/index.html" target="_blank" rel="noopener noreferrer">Matthias Doepke</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>mvp2131</td>
+          <td><a href="https://economics.princeton.edu/graduate-program/graduate-student-directory/ https://www.linkedin.com/in/matthew-pitcock-799386181" target="_blank" rel="noopener noreferrer">Matthew Pitcock</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>mvp2131</td>
+          <td><a href="https://www.linkedin.com/in/matthew-pitcock-799386181/ https://economics.princeton.edu/graduate-program/graduate-student-directory/" target="_blank" rel="noopener noreferrer">Matthew Pitcock</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>nahimbz</td>
+          <td><a href="https://nahimzahur.github.io/" target="_blank" rel="noopener noreferrer">Nahim Bin Zahur</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>NeverGonnaXGiveYouUp</td>
+          <td><a href="https://www.linkedin.com/in/ganqili/" target="_blank" rel="noopener noreferrer">Ganqi Li</a></td>
+          <td>Predoctoral fellow</td>
+        </tr>
+<tr>
+          <td>nicanava</td>
+          <td><a href="https://mnav-umd.github.io" target="_blank" rel="noopener noreferrer">Michael Navarrete</a></td>
+          <td>Economist</td>
+        </tr>
+<tr>
+          <td>NoBadDays28</td>
+          <td><a href="https://www.daniel-graeber.com" target="_blank" rel="noopener noreferrer">Daniel Graeber</a></td>
+          <td>Postdoctoral fellow</td>
+        </tr>
+<tr>
+          <td>nuggetssaw</td>
+          <td><a href="https://www.iwh-halle.de/en/about-the-iwh/team/detail/boris-kozyrev" target="_blank" rel="noopener noreferrer">Boris Kozyrev</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>Pablofiomig</td>
+          <td><a href="https://redeore99.github.io/pablo-fiorentini/index.html" target="_blank" rel="noopener noreferrer">Pablo Fiorentini</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>paradoxel</td>
+          <td><a href="https://www.linkedin.com/mwlite/in/aryen-shrestha" target="_blank" rel="noopener noreferrer">Aryen Shrestha</a></td>
+          <td>Predoctoral fellow</td>
+        </tr>
+<tr>
+          <td>PigouOnThe7th</td>
+          <td><a href="https://paulnovosad.com" target="_blank" rel="noopener noreferrer">Paul Novosad</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>repnick</td>
+          <td><a href="https://NA.com" target="_blank" rel="noopener noreferrer">Nick Heath</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>Reykrule</td>
+          <td><a href="https://sites.google.com/view/fernandosaltiel/" target="_blank" rel="noopener noreferrer">Fernando Saltiel</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>robizon102</td>
+          <td><a href="https://www.robizonk.com/" target="_blank" rel="noopener noreferrer">Robizon Khubulashvili</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>RodrigoTMartin</td>
+          <td><a href="https://x.com/RodrigoTMartin" target="_blank" rel="noopener noreferrer">Rodrigo Martin</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>Sahil</td>
+          <td><a href="https://sites.google.com/view/sahil-gandhi/home" target="_blank" rel="noopener noreferrer">Sahil Gandhi</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>SaraSethia1598</td>
+          <td><a href="https://www.linkedin.com/in/sara-sethia-31a8a6a2/" target="_blank" rel="noopener noreferrer">Sara Sethia</a></td>
+          <td>Predoctoral fellow</td>
+        </tr>
+<tr>
+          <td>sharma_sankalp</td>
+          <td><a href="https://sites.google.com/view/sankalpsharma/" target="_blank" rel="noopener noreferrer">Sankalp Sharma</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>shreyashs</td>
+          <td><a href="https://x.com/xegression" target="_blank" rel="noopener noreferrer">Shreyash Surendrarao Deshmukh</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>sixsillysisters</td>
+          <td><a href="https://linkedin.com/in/teditotojani" target="_blank" rel="noopener noreferrer">Tedi Totojani</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>steeb22</td>
+          <td><a href="https://andrewsteck.github.io/" target="_blank" rel="noopener noreferrer">Andrew Steck</a></td>
+          <td>Professor</td>
+        </tr>
+<tr>
+          <td>tanmaydevi4</td>
+          <td><a href="https://LinkedIn.com/in/tanmay-devi" target="_blank" rel="noopener noreferrer">Tanmay Devi</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>the_crown_jules</td>
+          <td><a href="https://PhD student" target="_blank" rel="noopener noreferrer">Julia Francesca Engel</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>timdeisemann</td>
+          <td><a href="https://www.ebrd.com/home/what-we-do/office-of-the-chief-economist/tim-deisemann.html#" target="_blank" rel="noopener noreferrer">Tim Deisemann</a></td>
+          <td>PhD student</td>
+        </tr>
+<tr>
+          <td>tjw1999</td>
+          <td><a href="https://x.com/jiaweitang3" target="_blank" rel="noopener noreferrer">Jiawei Tang</a></td>
+          <td>Predoctoral fellow</td>
+        </tr>
+<tr>
+          <td>UB_TheQueen</td>
+          <td><a href="https://uyangabyambaa.com" target="_blank" rel="noopener noreferrer">Uyanga Byambaa</a></td>
+          <td>PhD student</td>
+        </tr>
+      <tr>
+          <td>vcicero</td>
+          <td><a href="https://vcicero.github.io/" target="_blank" rel="noopener noreferrer">Vinicius Cicero</a></td>
+          <td>Professor</td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <script>
+    const input = document.getElementById('filterInput');
+    const rows = Array.from(document.querySelectorAll('#memberTable tbody tr'));
+    const visibleCount = document.getElementById('visibleCount');
+
+    function updateCount() {
+      const count = rows.filter(row => !row.classList.contains('hidden')).length;
+      visibleCount.textContent = count;
+    }
+
+    function applyFilter() {
+      const q = input.value.trim().toLowerCase();
+      rows.forEach(row => {
+        const username = row.cells[0].textContent.toLowerCase();
+        const name = row.cells[1].textContent.toLowerCase();
+        const match = !q || username.includes(q) || name.includes(q);
+        row.classList.toggle('hidden', !match);
+      });
+      updateCount();
+    }
+
+    input.addEventListener('input', applyFilter);
+    updateCount();
+  </script>
+</body>
+</html>
