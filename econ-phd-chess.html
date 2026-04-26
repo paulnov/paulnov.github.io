@@ -97,7 +97,7 @@
     }
     table {
       width: 100%;
-      min-width: 760px;
+      min-width: 920px;
       border-collapse: separate;
       border-spacing: 0;
     }
@@ -131,9 +131,9 @@
     td:nth-child(2) {
       font-weight: 560;
     }
-    td:last-child {
+    td:nth-child(3),
+    td:nth-child(4) {
       color: var(--muted);
-      white-space: nowrap;
     }
     tbody tr:nth-child(even) td {
       background: var(--panel-alt);
@@ -187,7 +187,8 @@
       <tr>
         <th>Lichess username</th>
         <th>Full name</th>
-        <th>What job title best describes your position?</th>
+        <th>Title</th>
+        <th>Place</th>
       </tr>
     </thead>
     <tbody>
@@ -609,6 +610,97 @@
     const input = document.getElementById('filterInput');
     const rows = Array.from(document.querySelectorAll('#memberTable tbody tr'));
     const visibleCount = document.getElementById('visibleCount');
+    const placeByUsername = {
+      Aaron12321: 'University of Chicago',
+      aaronds: 'University of California, Irvine',
+      adrianonaso: 'Rome Economics Doctorate (Rome, Italy)',
+      advait_h_moharir: 'Michigan State University',
+      Aerialviolet: 'Institute for Replication, University of Ottawa',
+      Akseli_Palomaki: 'Columbia University',
+      amateur_nonmaster: 'National Bureau of Economic Research',
+      Anonforrankings: 'CUNY Graduate Center',
+      AvivMCaspi: 'Stanford Law School',
+      ayushkumar2: 'Northwestern University',
+      bcw1234: 'University of Western Australia (Perth, Australia)',
+      BerlinSpringbok: 'WZB Berlin Social Science Center (Berlin, Germany)',
+      Bhboehlert: 'Princeton University',
+      Bonsahara: 'Simon Fraser University (Burnaby, Canada)',
+      Brennan_I: 'Princeton University',
+      carversrv: 'University of California, Santa Cruz',
+      cianruane: 'Central Bank of Ireland (Dublin, Ireland)',
+      chess_vinayak: 'Uber',
+      dainisz83: 'Rotterdam School of Management, Erasmus University',
+      dakshwl: 'University of Oxford',
+      DavidSmerdon: 'University of Queensland (Brisbane, Australia)',
+      dsonnens: 'University of Chicago',
+      econ_hicks: 'University of Toronto',
+      econpi: 'University at Albany, SUNY',
+      eigenblunder: 'International Food Policy Research Institute',
+      Elpuercoespin: 'California State University, East Bay',
+      emilybookworm: 'Dartmouth College',
+      Felix_Hasselblad: 'Stockholm University (Stockholm, Sweden)',
+      ggkimchi: 'University of Michigan',
+      gr_94: 'Warwick Business School, University of Warwick',
+      Hakunabatata: 'Goethe University Frankfurt (Frankfurt, Germany)',
+      hbw13: 'University of Toronto',
+      hgxyz: 'Indian Institute for Human Settlements (Bengaluru, India)',
+      hoangro: 'Denison University (USA)',
+      huseynovecon: 'Auburn University',
+      iavar: 'Auburn University',
+      iluvdaravens: 'University of Maryland',
+      jackfitz800: 'Vrije Universiteit Amsterdam / Tinbergen Institute',
+      Jere24: 'University of St. Gallen (St. Gallen, Switzerland)',
+      Jonatanr: 'IIES, Stockholm University',
+      junqueira: 'University of Florida',
+      Kluddiron: 'Michigan State University',
+      kojeve13: 'London School of Economics and Political Science (London, UK)',
+      lee8718: 'Center for Global Development',
+      leosaenger: 'Harvard University',
+      Market_failure: 'IWH Halle Institute for Economic Research (Halle, Germany)',
+      martinrinaldi: 'University of British Columbia (Vancouver, Canada)',
+      MarvelMaharnab: 'University of Houston',
+      matchaman1: 'Princeton University',
+      mcaceresb: 'Pontificia Universidad Católica de Chile (Santiago, Chile)',
+      mdoepke: 'London School of Economics and Political Science (London, UK)',
+      Meatshield262: 'College of Staten Island, CUNY',
+      mvp2131: 'Princeton University',
+      nahimbz: "Queen's University (Kingston, Canada)",
+      NeverGonnaXGiveYouUp: 'Dartmouth College',
+      nicanava: 'Federal Reserve Bank of Atlanta',
+      NoBadDays28: 'DIW Berlin (Berlin, Germany)',
+      NotCreativeUsername: 'Kyiv School of Economics (Kyiv, Ukraine)',
+      nuggetssaw: 'IWH Halle Institute for Economic Research (Halle, Germany)',
+      Pablofiomig: 'LUISS University (Rome, Italy)',
+      paradoxel: 'Dartmouth College',
+      PigouOnThe7th: 'Dartmouth College',
+      ravisatpute98: 'Indian Institute of Management Calcutta',
+      repnick: 'Universitat Pompeu Fabra / Barcelona School of Economics',
+      Reykrule: 'McGill University',
+      robizon102: 'University of San Francisco',
+      RodrigoTMartin: 'Universidad de San Andrés / Universidad de Buenos Aires (Buenos Aires, Argentina)',
+      Sahil: 'University of Manchester',
+      SaraSethia1598: 'McKinsey & Company',
+      sharma_sankalp: 'University of Southern California',
+      shreyashs: 'Indian Institute of Management Kozhikode',
+      Shubhamkarnawat: 'University of California, Irvine',
+      sixsillysisters: 'Carnegie Mellon University',
+      steeb22: 'University of Toronto',
+      tanmaydevi4: 'Rice University',
+      the_crown_jules: 'Kiel University (Kiel, Germany)',
+      timdeisemann: 'European Bank for Reconstruction and Development (London, UK)',
+      tjw1999: 'Massachusetts Institute of Technology',
+      UB_TheQueen: 'University of California, Berkeley',
+      Urvster: 'Indian Institute of Management Ahmedabad (Ahmedabad, India)',
+      vcicero: 'Denison University',
+      venturovb: 'Columbia University',
+    };
+
+    rows.forEach(row => {
+      const username = row.cells[0].textContent.trim();
+      const placeCell = document.createElement('td');
+      placeCell.textContent = placeByUsername[username] || '';
+      row.appendChild(placeCell);
+    });
 
     function updateCount() {
       const count = rows.filter(row => !row.classList.contains('hidden')).length;
