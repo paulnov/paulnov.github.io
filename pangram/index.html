@@ -25,8 +25,9 @@ a:hover, .text-button:hover { color: var(--accent); }
 .eyebrow { font-size: 10px; letter-spacing: .19em; font-weight: 650; color: var(--accent); margin-bottom: 8px; }
 h1 { font-family: Georgia, "Times New Roman", serif; font-size: 35px; line-height: 1.15; font-weight: 400; letter-spacing: -.025em; }
 .study-meta { text-align: right; color: var(--muted); font-size: 12px; line-height: 1.8; white-space: nowrap; }
-.methods-summary { margin: 15px 0 0; font-size: 12px; line-height: 1.65; color: var(--muted); }
+.methods-summary { margin: 15px 0 0; font-size: 14px; line-height: 1.65; color: var(--muted); }
 .methods-summary strong { font-weight: 600; color: var(--ink); }
+.results-summary { margin: 14px 0 0; font-size: 18px; line-height: 1.6; }
 .panel-tabs { display: flex; gap: 6px; padding-top: 18px; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; background: var(--paper); }
 .panel-tabs button { background: transparent; border: 1px solid transparent; border-bottom: 0; border-radius: 5px 5px 0 0; padding: 12px 20px; font-size: 14px; color: var(--muted); }
 .panel-tabs button[aria-selected="true"] { border-color: var(--line); color: var(--ink); background: #f2f3ed; box-shadow: inset 0 3px var(--accent); font-weight: 600; }
@@ -47,14 +48,17 @@ h2 { font-size: 18px; font-weight: 550; letter-spacing: -.015em; }
 .version-chart { padding: 0 0 22px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
 .mean-area { padding: 2px 0 8px; }
 h3 { font-size: 13px; font-weight: 600; }
+#panel-a h3 { font-size: 16px; }
 .chart-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.chart-heading p { font-size: 11px; color: var(--muted); white-space: nowrap; }
+.chart-heading p { font-size: 14px; color: var(--muted); white-space: nowrap; }
 .histogram { display: block; width: 100%; overflow: visible; font-family: inherit; margin-top: 10px; }
-.histogram text { fill: var(--muted); font-size: 11px; }
+.histogram text { fill: var(--muted); font-size: 13px; }
 .histogram .bar { transition: opacity .12s; }
 .histogram .bar:hover, .histogram .bar:focus { opacity: .76; outline: none; stroke: var(--ink); stroke-width: 1; }
 .table-scroll { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 12px; margin-top: 7px; }
+#means { font-size: 15px; }
+#means thead th { font-size: 13px; }
 th, td { text-align: right; padding: 6px 5px; white-space: nowrap; }
 th:first-child, td:first-child { text-align: left; padding-left: 0; }
 thead th { color: var(--muted); font-size: 10px; font-weight: 500; border-bottom: 1px solid var(--line); }
@@ -62,7 +66,7 @@ tbody th { font-weight: 500; }
 tbody tr:hover { background: #f3f3ec; }
 tfoot th, tfoot td { border-top: 1px solid var(--line); padding-top: 9px; font-weight: 600; }
 .method-dot { display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 1px; }
-.method-short { font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 5px; }
+.method-short { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 5px; }
 .summary-notes { display: flex; gap: 20px; justify-content: space-between; padding: 13px 0 23px; align-items: baseline; color: var(--muted); font-size: 11px; }
 .matrix-area { padding: 22px 0 18px; border-top: 1px solid var(--line); max-width: 450px; }
 .matrix-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
@@ -70,25 +74,22 @@ tfoot th, tfoot td { border-top: 1px solid var(--line); padding-top: 9px; font-w
 #result-matrix { table-layout: fixed; width: 450px; margin-top: 0; }
 #result-matrix th:first-child { width: 240px; position: sticky; left: 0; z-index: 1; background: var(--paper); }
 #result-matrix thead th:not(:first-child) { text-align: center; }
-#result-matrix thead th { padding: 6px 0; font-size: 9px; }
+#result-matrix thead th { padding: 6px 0; font-size: 11px; }
 #result-matrix tbody th { padding: 0 8px 0 0; height: 30px; border: 0; }
 #result-matrix td { padding: 1px; width: 30px; height: 30px; border: 0; }
-.matrix-label { display: block; overflow: hidden; text-overflow: ellipsis; font-size: 11px; font-weight: 400; line-height: 30px; }
+.matrix-label { display: block; overflow: hidden; text-overflow: ellipsis; font-size: 12px; font-weight: 400; line-height: 30px; }
 .matrix-cell { display: block; width: 28px; height: 28px; padding: 0; border: 0; background: #f1f2ed; text-align: center; font-variant-numeric: tabular-nums; }
 .matrix-cell:hover { box-shadow: inset 0 0 0 1px var(--accent); }
-.matrix-score { display: block; font-size: 10px; line-height: 28px; }
+.matrix-score { display: block; font-size: 13px; line-height: 28px; }
 .figure-note { font-size: 10px; color: var(--muted); margin-top: 10px; }
 .compact-plot-area { max-width: 960px; border-top: 1px solid var(--line); padding: 22px 0; }
 .plot-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
 .plot-heading p { font-size: 11px; color: var(--muted); }
-.dot-legend { color: #547ea5; }
 .summary-plot { display: block; width: 100%; overflow: visible; }
-.summary-plot text { font-family: inherit; font-size: 11px; fill: var(--muted); }
+.summary-plot text { font-family: inherit; font-size: 14px; fill: var(--muted); }
 .summary-plot .plot-method, .summary-plot .bar-value { fill: var(--ink); }
-.passage-point { cursor: pointer; }
-.passage-point:hover, .passage-point:focus { stroke: var(--ink); stroke-width: 2; outline: none; }
-.mean-marker:focus, .classification-bar:focus { outline: none; stroke: var(--ink); stroke-width: 2; }
-.classification-legend { display: flex; gap: 16px; font-size: 11px; color: var(--muted); margin-bottom: 15px; }
+.classification-bar:focus { outline: none; stroke: var(--ink); stroke-width: 2; }
+.classification-legend { display: flex; gap: 16px; font-size: 14px; color: var(--muted); margin-bottom: 15px; }
 .classification-legend span { display: flex; align-items: center; gap: 5px; }
 .classification-legend i { display: inline-block; width: 10px; height: 10px; }
 .text-button { padding: 0; border: 0; background: transparent; font-size: 11px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
@@ -118,8 +119,8 @@ input[type="checkbox"] { accent-color: var(--accent); margin: 0; }
 .passage-text mark { color: inherit; padding: 2px 0; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .highlights-off .passage-text mark { background: transparent; box-shadow: none; }
 .pangram-stats { border-top: 1px solid var(--line); margin-top: 15px; padding: 12px 0 5px; }
-.stats-primary { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 20px; font-size: 12px; font-variant-numeric: tabular-nums; }
-.stats-primary strong { font-size: 13px; font-weight: 650; }
+.stats-primary { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 20px; font-size: 15px; font-variant-numeric: tabular-nums; }
+.stats-primary strong { font-size: 16px; font-weight: 650; }
 .stats-primary .ai-label { color: var(--accent); }
 .stats-secondary { font-size: 10px; color: var(--muted); margin-top: 7px; }
 .reader-downloads { display: flex; gap: 18px; margin: 5px 0 18px; }
@@ -142,7 +143,8 @@ footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1
       <div><p class="eyebrow">TRANSLATION EXPERIMENT</p><h1>Translation &amp; AI detection</h1></div>
       <p class="study-meta">16 passages · French &amp; Spanish<br>Pangram 4.0 · <span id="total-scored">109</span> scored documents</p>
     </header>
-    <p class="methods-summary"><strong>AI Methods Summary:</strong> For 16 pre-2022 French/Spanish passages across fiction, op-eds and academic writing, we asked OpenAI’s chat-latest for five meaning-preserving translation styles (T1–T5) and a draft from customized AI-written English bullets without the original (T6). Pangram 4.0 scored 109 documents: 16 originals and 93 completed outputs.</p>
+    <p class="methods-summary"><strong>AI Summary:</strong> For 16 pre-2022 French/Spanish passages across fiction, op-eds and academic writing, we asked OpenAI’s chat-latest for five meaning-preserving translation styles (T1–T5) and a draft from customized AI-written English bullets without the original (T6). Pangram 4.0 scored 109 documents: 16 originals and 93 completed outputs.</p>
+    <p class="results-summary">Not a single one of the machine translations (T1–T5) scored more than 50% on Pangram’s AI-generated measure. AI language is so narrow and distinct that it's very hard to come up with a prompt that translates a text and has the characteristic AI style. The only way we could do it was by first summarizing the text in bullets and then asking an AI to write a new passage.</p>
 
     <nav class="panel-tabs" role="tablist" aria-label="Results panels">
       <button id="tab-a" role="tab" aria-selected="true" aria-controls="panel-a" tabindex="0"><span class="panel-letter">A</span> Results overview</button>
@@ -160,7 +162,6 @@ footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1
         </div>
       </div>
       <div class="summary-content">
-        <div id="histograms" aria-label="Histograms by version"></div>
         <div class="mean-area">
           <h3>Mean Pangram share (%)</h3>
           <div class="table-scroll"><table id="means"><thead><tr><th scope="col">Version</th><th scope="col">n</th><th scope="col">AI</th><th scope="col">Assisted</th><th scope="col">Human</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
@@ -172,15 +173,12 @@ footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1
         <div class="table-scroll"><table id="result-matrix" aria-label="Passage by version results"><thead></thead><tbody></tbody></table></div>
         <p class="figure-note">Scores in % · — incomplete · click a cell to inspect</p>
       </div>
-      <div class="compact-plot-area" id="dot-plot-area">
-        <div class="plot-heading"><h3>Passage scores &amp; means</h3><p><span class="dot-legend">●</span> Passage &nbsp; ◆ Mean</p></div>
-        <svg id="dot-plot" class="summary-plot" role="img" aria-labelledby="dot-title dot-description"></svg>
-      </div>
       <div class="compact-plot-area" id="classification-plot-area">
         <div class="plot-heading"><h3>Document classifications</h3><p>Document labels · independent of score toggle</p></div>
         <div class="classification-legend"><span><i style="background:#b6c3b6"></i>Human</span><span><i style="background:#e0b076"></i>Mixed</span><span><i style="background:#ce6e33"></i>AI</span></div>
         <svg id="classification-plot" class="summary-plot" role="img" aria-labelledby="classification-title classification-description"></svg>
       </div>
+      <div id="histograms" class="summary-content" aria-label="Histograms by version"></div>
     </section>
 
     <section id="panel-b" class="explorer-panel" role="tabpanel" aria-labelledby="tab-b" hidden>
@@ -378,9 +376,10 @@ function renderMatrix(sources) {
   passageHeader.scope = 'col';
   header.append(passageHeader);
   for (const method of experiment.methods) {
-    const th = element('th', method.label);
+    const th = element('th', method.id === 'original' ? 'Orig.' : method.label);
     th.scope = 'col';
     th.title = method.description;
+    th.setAttribute('aria-label', method.label);
     header.append(th);
   }
   table.tHead.replaceChildren(header);
@@ -415,59 +414,6 @@ function renderMatrix(sources) {
   }
   table.tBodies[0].replaceChildren(body);
   byId('matrix-caption').textContent = `${metric.label} (%)`;
-}
-
-function renderDotPlot(rows) {
-  const svg = byId('dot-plot');
-  const metric = metrics[state.metric];
-  const chartWidth = Math.max(320, byId('dot-plot-area').clientWidth || 960);
-  const left = 70, right = chartWidth - 28, top = 36, rowHeight = 86;
-  const height = top + rowHeight * 7 + 36;
-  const x = value => left + (right - left) * value;
-  svg.setAttribute('viewBox', `0 0 ${chartWidth} ${height}`);
-  svg.replaceChildren(svgNode('title', { id: 'dot-title' }, `Passage scores and means: ${metric.label}`),
-    svgNode('desc', { id: 'dot-description' }, 'One dot per scored passage, stacked vertically at identical scores. A black diamond below the dots marks the mean for each version.'));
-  for (let tick = 0; tick <= 100; tick += 20) {
-    svg.append(svgNode('line', { x1: x(tick / 100), x2: x(tick / 100), y1: 12, y2: height - 42, stroke: '#e1e5de' }),
-      svgNode('text', { x: x(tick / 100), y: height - 22, 'text-anchor': 'middle' }, tick));
-  }
-  experiment.methods.forEach((method, index) => {
-    const selected = rows.filter(row => row.method.id === method.id);
-    const center = top + index * rowHeight;
-    const meanY = center + 38;
-    svg.append(svgNode('text', { x: left - 12, y: center + 4, 'text-anchor': 'end', class: 'plot-method' }, method.label));
-    const groups = new Map();
-    for (const row of selected) {
-      const value = metric.value(row.item.score);
-      const key = value.toFixed(7);
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push({ row, value });
-    }
-    for (const group of groups.values()) {
-      group.forEach(({ row, value }, pointIndex) => {
-        const cy = center + (pointIndex - (group.length - 1) / 2) * 4.2;
-        const title = `${experiment.labels[row.passage.id]} · ${method.label} · ${percent(value)}%`;
-        const point = svgNode('circle', { cx: x(value), cy, r: 1.8, fill: method.color,
-          class: 'passage-point', tabindex: 0, role: 'button', 'aria-label': `${title}. Open passage.`,
-          'data-source': row.passage.id, 'data-method': method.id, 'data-value': value });
-        point.append(svgNode('title', {}, title));
-        point.addEventListener('click', () => inspectCell(row.passage, method.id));
-        point.addEventListener('keydown', event => {
-          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); inspectCell(row.passage, method.id); }
-        });
-        svg.append(point);
-      });
-    }
-    const mean = selected.reduce((sum, row) => sum + metric.value(row.item.score), 0) / selected.length;
-    const meanX = x(mean);
-    const diamond = svgNode('polygon', { points: `${meanX},${meanY - 5} ${meanX + 5},${meanY} ${meanX},${meanY + 5} ${meanX - 5},${meanY}`,
-      fill: '#25322f', class: 'mean-marker', 'data-method': method.id, 'data-value': mean,
-      role: 'img', 'aria-label': `${method.label} mean ${percent(mean)}%`, tabindex: 0 });
-    diamond.append(svgNode('title', {}, `${method.label} mean: ${percent(mean)}% · n = ${selected.length}`));
-    const align = mean > 0.85 ? 'end' : 'start';
-    svg.append(diamond, svgNode('text', { x: meanX + (align === 'end' ? -10 : 10), y: meanY + 4, 'text-anchor': align }, `${percent(mean)}%`));
-  });
-  svg.append(svgNode('text', { x: (left + right) / 2, y: height - 2, 'text-anchor': 'middle' }, `${metric.label} share (%)`));
 }
 
 function renderClassificationPlot(rows) {
@@ -522,7 +468,6 @@ function renderSummary() {
     rows.filter(row => row.method.id === method.id), method, index));
   addMeanRow(foot, 'All versions', rows);
   renderMatrix(sources);
-  renderDotPlot(rows);
   renderClassificationPlot(rows);
   byId('coverage-note').textContent = `${sources.length} passages · each scored version counts once.${missing ? ' Márquez T3–T5: incomplete, excluded from scores.' : ''}`;
 }
