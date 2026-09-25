@@ -25,6 +25,8 @@ a:hover, .text-button:hover { color: var(--accent); }
 .eyebrow { font-size: 10px; letter-spacing: .19em; font-weight: 650; color: var(--accent); margin-bottom: 8px; }
 h1 { font-family: Georgia, "Times New Roman", serif; font-size: 35px; line-height: 1.15; font-weight: 400; letter-spacing: -.025em; }
 .study-meta { text-align: right; color: var(--muted); font-size: 12px; line-height: 1.8; white-space: nowrap; }
+.methods-summary { margin: 15px 0 0; font-size: 12px; line-height: 1.65; color: var(--muted); }
+.methods-summary strong { font-weight: 600; color: var(--ink); }
 .panel-tabs { display: flex; gap: 6px; padding-top: 18px; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; background: var(--paper); }
 .panel-tabs button { background: transparent; border: 1px solid transparent; border-bottom: 0; border-radius: 5px 5px 0 0; padding: 12px 20px; font-size: 14px; color: var(--muted); }
 .panel-tabs button[aria-selected="true"] { border-color: var(--line); color: var(--ink); background: #f2f3ed; box-shadow: inset 0 3px var(--accent); font-weight: 600; }
@@ -121,8 +123,11 @@ input[type="checkbox"] { accent-color: var(--accent); margin: 0; }
 .stats-primary .ai-label { color: var(--accent); }
 .stats-secondary { font-size: 10px; color: var(--muted); margin-top: 7px; }
 .reader-downloads { display: flex; gap: 18px; margin: 5px 0 18px; }
-#prompt-panel { border-block: 1px solid var(--line); padding: 10px 12px; background: #f2f3ed; margin: 0 0 14px; }
-.prompt-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 11px; }
+#prompt-panel { border-block: 1px solid var(--line); padding: 14px 16px; background: #f2f3ed; margin: 0 0 22px; }
+.prompt-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: 11px; }
+.prompt-method-control { display: flex; align-items: center; gap: 8px; margin-left: auto; max-width: 100%; }
+.prompt-method-control select { min-width: 0; max-width: 100%; font-size: 11px; }
+#prompt-text { max-height: none; overflow: visible; padding: 0; }
 pre { font: 12px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 350px; overflow: auto; margin: 12px 0 0; padding-right: 10px; }
 .incomplete-notice { border-left: 2px solid var(--accent); padding: 7px 12px; margin: 5px 0 12px; color: #86441f; font-size: 12px; background: #fff4e6; }
 footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); margin-top: 15px; padding-top: 16px; font-size: 10px; color: var(--muted); }
@@ -137,6 +142,7 @@ footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1
       <div><p class="eyebrow">TRANSLATION EXPERIMENT</p><h1>Translation &amp; AI detection</h1></div>
       <p class="study-meta">16 passages · French &amp; Spanish<br>Pangram 4.0 · <span id="total-scored">109</span> scored documents</p>
     </header>
+    <p class="methods-summary"><strong>AI Methods Summary:</strong> For 16 pre-2022 French/Spanish passages across fiction, op-eds and academic writing, we asked OpenAI’s chat-latest for five meaning-preserving translation styles (T1–T5) and a draft from customized AI-written English bullets without the original (T6). Pangram 4.0 scored 109 documents: 16 originals and 93 completed outputs.</p>
 
     <nav class="panel-tabs" role="tablist" aria-label="Results panels">
       <button id="tab-a" role="tab" aria-selected="true" aria-controls="panel-a" tabindex="0"><span class="panel-letter">A</span> Results overview</button>
@@ -181,6 +187,10 @@ footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1
       <div class="section-heading"><h2 id="explorer-heading">Passage explorer</h2>
         <label class="highlight-toggle"><input id="highlight" type="checkbox" checked> Highlight Pangram segments</label>
       </div>
+      <div id="prompt-panel">
+        <div class="prompt-heading"><strong id="prompt-heading">Exact prompt</strong><label class="prompt-method-control" for="prompt-method">Method <select id="prompt-method"></select></label><button id="download-prompt" class="text-button">Full request ↓</button></div>
+        <pre id="prompt-text" tabindex="0"></pre>
+      </div>
       <div class="passage-control"><label for="passage">Passage</label><select id="passage"></select><div class="pager"><button id="previous" aria-label="Previous passage">←</button><button id="next" aria-label="Next passage">→</button></div></div>
       <div class="passage-heading"><h3 id="passage-title"></h3><p id="passage-meta"></p></div>
       <div class="legend"><span><i class="key generated"></i> AI-generated</span><span><i class="key assisted"></i> AI-assisted</span><span class="legend-note">Unshaded: human · segment boundaries supplied by Pangram</span></div>
@@ -194,8 +204,7 @@ footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1
         </article>
         <article class="reader translation-reader" aria-labelledby="translation-heading">
           <div class="reader-heading"><label id="translation-heading" for="method">English version</label><select id="method"></select></div>
-          <div class="reader-tools"><span id="generation-meta"></span><button id="prompt-toggle" class="text-button" aria-expanded="false" aria-controls="prompt-panel">Show prompt +</button></div>
-          <div id="prompt-panel" hidden><div class="prompt-heading"><strong id="prompt-heading">Exact prompt</strong><button id="download-prompt" class="text-button">Prompt ↓</button></div><pre id="prompt-text" tabindex="0"></pre></div>
+          <div class="reader-tools"><span id="generation-meta"></span></div>
           <p id="incomplete-notice" class="incomplete-notice" hidden>Generation stopped by the model’s content filter. Only this partial output is available; it was not sent to Pangram.</p>
           <div id="translation-text" class="passage-text" tabindex="0" aria-label="English passage"></div>
           <div id="translation-stats" class="pangram-stats" aria-live="polite"></div>
@@ -564,8 +573,9 @@ function renderPassage() {
   byId('original-words').textContent = `${original.words.toLocaleString()} words`;
   byId('source-link').href = passage.source_url;
   byId('generation-meta').textContent = `${translated.model} · ${translated.words.toLocaleString()} words`;
-  byId('prompt-heading').textContent = state.method === 't6' ? 'Exact drafting prompt + assistant-written brief' : 'Exact translation prompt + source input';
-  byId('prompt-text').textContent = translated.prompt;
+  byId('prompt-heading').textContent = state.method === 't6' ? 'T6 · Exact drafting prompt + full bullets' : `${state.method.toUpperCase()} · Exact translation prompt`;
+  byId('prompt-method').value = state.method;
+  byId('prompt-text').textContent = state.method === 't6' ? translated.prompt : translated.prompt.replace(/(<source_text>)[\s\S]*?(<\/source_text>)/, '$1\n[ORIGINAL TEXT]\n$2');
   byId('prompt-text').scrollTop = 0;
   byId('incomplete-notice').hidden = translated.status === 'completed';
   byId('download-translation-score').hidden = !translated.score;
@@ -619,6 +629,7 @@ for (const method of experiment.methods.slice(1)) {
   const option = element('option', `${method.label} · ${method.description}`);
   option.value = method.id;
   byId('method').append(option);
+  byId('prompt-method').append(option.cloneNode(true));
 }
 byId('genre').value = state.genre;
 for (const metric of Object.keys(metrics)) {
@@ -649,6 +660,12 @@ document.body.classList.toggle('highlights-off', !state.highlight);
 byId('genre').addEventListener('change', event => { state.genre = event.target.value; renderSummary(); saveState(); });
 byId('passage').addEventListener('change', event => { state.passage = event.target.value; renderPassage(); saveState(); });
 byId('method').addEventListener('change', event => { state.method = event.target.value; renderPassage(); saveState(); });
+byId('prompt-method').addEventListener('change', event => {
+  state.method = event.target.value;
+  byId('method').value = state.method;
+  renderPassage();
+  saveState();
+});
 byId('highlight').addEventListener('change', event => {
   state.highlight = event.target.checked;
   document.body.classList.toggle('highlights-off', !state.highlight);
@@ -665,12 +682,6 @@ for (const [id, step] of [['previous', -1], ['next', 1]]) {
     saveState();
   });
 }
-byId('prompt-toggle').addEventListener('click', () => {
-  const expanded = byId('prompt-panel').hidden;
-  byId('prompt-panel').hidden = !expanded;
-  byId('prompt-toggle').setAttribute('aria-expanded', String(expanded));
-  byId('prompt-toggle').textContent = expanded ? 'Hide prompt −' : 'Show prompt +';
-});
 byId('download-original').addEventListener('click', () => download(`${state.passage}__original.txt`, currentPassage().versions.original.text));
 byId('download-translation').addEventListener('click', () => download(`${state.passage}__${state.method}.txt`, currentPassage().versions[state.method].text));
 byId('download-prompt').addEventListener('click', () => download(`${state.passage}__${state.method}.prompt.txt`, currentPassage().versions[state.method].prompt));
