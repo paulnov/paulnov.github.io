@@ -27,7 +27,6 @@ h1 { font-family: Georgia, "Times New Roman", serif; font-size: 35px; line-heigh
 .study-meta { text-align: right; color: var(--muted); font-size: 12px; line-height: 1.8; white-space: nowrap; }
 .methods-summary { margin: 15px 0 0; font-size: 14px; line-height: 1.65; color: var(--muted); }
 .methods-summary strong { font-weight: 600; color: var(--ink); }
-.results-summary { margin: 14px 0 0; font-size: 18px; line-height: 1.6; }
 .panel-tabs { display: flex; gap: 6px; padding-top: 18px; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; background: var(--paper); }
 .panel-tabs button { background: transparent; border: 1px solid transparent; border-bottom: 0; border-radius: 5px 5px 0 0; padding: 12px 20px; font-size: 14px; color: var(--muted); }
 .panel-tabs button[aria-selected="true"] { border-color: var(--line); color: var(--ink); background: #f2f3ed; box-shadow: inset 0 3px var(--accent); font-weight: 600; }
@@ -143,8 +142,7 @@ footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1
       <div><p class="eyebrow">TRANSLATION EXPERIMENT</p><h1>Translation &amp; AI detection</h1></div>
       <p class="study-meta">16 passages · French &amp; Spanish<br>Pangram 4.0 · <span id="total-scored">109</span> scored documents</p>
     </header>
-    <p class="methods-summary"><strong>AI Summary:</strong> For 16 pre-2022 French/Spanish passages across fiction, op-eds and academic writing, we asked OpenAI’s chat-latest for five meaning-preserving translation styles (T1–T5) and a draft from customized AI-written English bullets without the original (T6). Pangram 4.0 scored 109 documents: 16 originals and 93 completed outputs.</p>
-    <p class="results-summary">Not a single one of the machine translations (T1–T5) scored more than 50% on Pangram’s AI-generated measure. AI language is so narrow and distinct that it's very hard to come up with a prompt that translates a text and has the characteristic AI style. The only way we could do it was by first summarizing the text in bullets and then asking an AI to write a new passage.</p>
+    <p class="methods-summary"><strong>Summary:</strong> We took 16 pre-2022 French/Spanish passages from fiction, op-eds and academic writing, and used the GPT API to translate them. We use five prompts requesting variable amounts of adherence to the original text, from extremely tight adherence to granted wide leeway for sentence and paragraph reformulation. A sixth translation first summarized the original text in bullets, from which a new English text was generated. We then ran all of these through Pangram. Not a single one of the machine translations (T1–T5) scored more than 50% on Pangram’s AI-text measure. AI language is so narrow and distinct that it is very hard to come up with a prompt that translates a text in enough of an AI style to trigger Pangram's detection. The only way we could get a positive was by cutting the original text down to bullets and then asking the AI to write a new passage from them. 100% of these new passages were flagged by pangram.</p>
 
     <nav class="panel-tabs" role="tablist" aria-label="Results panels">
       <button id="tab-a" role="tab" aria-selected="true" aria-controls="panel-a" tabindex="0"><span class="panel-letter">A</span> Results overview</button>
